@@ -1,0 +1,16 @@
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\Hust.Datn.Infrastructure.deps.json
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\Hust.Datn.Infrastructure.dll
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\ref\Hust.Datn.Infrastructure.dll
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\Hust.Datn.Infrastructure.pdb
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\Hust.Datn.Service.dll
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\Hust.Datn.Service.pdb
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\obj\Debug\net5.0\Hust.Datn.Infrastructure.csproj.AssemblyReference.cache
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\obj\Debug\net5.0\Hust.Datn.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\obj\Debug\net5.0\Hust.Datn.Infrastructure.AssemblyInfoInputs.cache
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\obj\Debug\net5.0\Hust.Datn.Infrastructure.AssemblyInfo.cs
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\obj\Debug\net5.0\Hust.Datn.Infrastructure.csproj.CoreCompileInputs.cache
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\obj\Debug\net5.0\Hust.Datn.Infrastructure.csproj.CopyComplete
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\obj\Debug\net5.0\Hust.Datn.Infrastructure.dll
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\obj\Debug\net5.0\ref\Hust.Datn.Infrastructure.dll
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\obj\Debug\net5.0\Hust.Datn.Infrastructure.pdb
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\Stores\SqlQuery\Category_Paging.sql
