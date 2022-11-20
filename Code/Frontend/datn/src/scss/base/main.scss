@@ -1,0 +1,23 @@
+@import "@/scss/base/variables.scss";
+
+* {
+  box-sizing: inherit;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  font-family: OpenSans-Regular;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  position: relative;
+}
+
+#app {
+  background-color: var(--white-color);
+  overflow: hidden;
+}

@@ -43,12 +43,7 @@ namespace Hust.Datn.Infrastructure.Repository
             return entities;
         }
 
-        public Task<Entity> GetByIdGuid(Guid entityId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Entity> GetByIdInt(int entityId)
+        public Task<Entity> GetById(string entityId)
         {
             throw new NotImplementedException();
         }
@@ -63,12 +58,7 @@ namespace Hust.Datn.Infrastructure.Repository
             throw new NotImplementedException();
         }
 
-        public Task<ServiceResult> DeleteGuid(List<Guid> entityIds)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ServiceResult> DeleteInt(List<int> entityIds)
+        public Task<ServiceResult> Delete(List<Entity> entities)
         {
             throw new NotImplementedException();
         }

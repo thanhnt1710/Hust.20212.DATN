@@ -52,12 +52,8 @@ namespace Hust.Datn.Service.Services
             return await _baseRepo.GetAll(source);
         }
 
-        public virtual async Task<Entity> GetByIdGuid(Guid entityId) {
-            return await _baseRepo.GetByIdGuid(entityId);
-        }
-
-        public virtual async Task<Entity> GetByIdInt(int entityId) {
-            return await _baseRepo.GetByIdInt(entityId);
+        public virtual async Task<Entity> GetById(string entityId) {
+            return await _baseRepo.GetById(entityId);
         }
 
         public virtual async Task<ServiceResult> Add(Entity entity) {
@@ -68,12 +64,8 @@ namespace Hust.Datn.Service.Services
             return await _baseRepo.Update(entity);
         }
 
-        public virtual async Task<ServiceResult> DeleteGuid(List<Guid> entityIds) {
-            return await _baseRepo.DeleteGuid(entityIds);
-        }
-
-        public virtual async Task<ServiceResult> DeleteInt(List<int> entityIds) {
-            return await _baseRepo.DeleteInt(entityIds);
+        public virtual async Task<ServiceResult> Delete(List<Entity> entities) {
+            return await _baseRepo.Delete(entities);
         }
         #endregion
 

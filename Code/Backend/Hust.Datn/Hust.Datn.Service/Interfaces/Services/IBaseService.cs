@@ -11,16 +11,12 @@ namespace Hust.Datn.Service.Interfaces
     {
         Task<IEnumerable<Entity>> GetAll();
 
-        Task<Entity> GetByIdGuid(Guid entityId);
-
-        Task<Entity> GetByIdInt(int entityId);
+        Task<Entity> GetById(string entityId);
 
         Task<ServiceResult> Add(Entity entity);
 
         Task<ServiceResult> Update(Entity entity);
 
-        Task<ServiceResult> DeleteGuid(List<Guid> entityIds);
-
-        Task<ServiceResult> DeleteInt(List<int> entityIds);
+        Task<ServiceResult> Delete(List<Entity> entities);
     }
 }

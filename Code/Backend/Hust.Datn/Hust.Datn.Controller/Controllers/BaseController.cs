@@ -25,11 +25,7 @@ namespace Hust.Datn.Controller.Controllers
 
         #region Methods
 
-        /// <summary>
-        /// Lấy hết
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
+        [HttpGet("list")]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -50,33 +46,12 @@ namespace Hust.Datn.Controller.Controllers
             }
         }
 
-        [HttpGet("Giud/{Id}")]
-        public async Task<IActionResult> GetById([FromRoute] Guid Id)
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetById([FromRoute] string Id)
         {
             try
             {
-                var entity = await _baseService.GetByIdGuid(Id);
-                if (entity != null)
-                {
-                    return Ok(entity);
-                }
-                else
-                {
-                    return NoContent();
-                }
-            }
-            catch (Exception e)
-            {
-                return HandleException(e);
-            }
-        }
-
-        [HttpGet("Int/{Id}")]
-        public async Task<IActionResult> GetById([FromRoute] int Id)
-        {
-            try
-            {
-                var entity = await _baseService.GetByIdInt(Id);
+                var entity = await _baseService.GetById(Id);
                 if (entity != null)
                 {
                     return Ok(entity);
@@ -106,23 +81,8 @@ namespace Hust.Datn.Controller.Controllers
             }
         }
 
-        [HttpDelete("{Id}")]
-        public async Task<IActionResult> DeleteGuid([FromRoute] List<Guid> Id)
-        {
-            try
-            {
-                var serviceResult = await _baseService.DeleteGuid(Id);
-
-                return Ok(serviceResult);
-            }
-            catch (Exception e)
-            {
-                return HandleException(e);
-            }
-        }
-
-        [HttpPut("{Id}")]
-        public async Task<IActionResult> Update([FromRoute] string Id, [FromBody] Entity entity)
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] Entity entity)
         {
             try
             {
@@ -135,6 +95,22 @@ namespace Hust.Datn.Controller.Controllers
                 return HandleException(e);
             }
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromBody] List<Entity> parameter)
+        {
+            try
+            {
+                var serviceResult = await _baseService.Delete(parameter);
+
+                return Ok(serviceResult);
+            }
+            catch (Exception e)
+            {
+                return HandleException(e);
+            }
+        }
+
         #endregion
 
         #region Other
