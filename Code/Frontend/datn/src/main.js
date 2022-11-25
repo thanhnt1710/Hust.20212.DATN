@@ -3,6 +3,12 @@ import App from "./App.vue";
 import router from "./routers/router";
 import store from "./stores/base/store";
 
+import "@/commons/globalComponent.js";
+import enums from "@/commons/enums.js";
+import "@/scss/base/app.scss";
+
+Vue.prototype.$app = { enums };
+
 Vue.config.productionTip = false;
 
 new Vue({

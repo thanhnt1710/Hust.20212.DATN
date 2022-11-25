@@ -1,0 +1,34 @@
+@import '@/scss/base/variables.scss';
+
+.base-input {
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  height: 40px;
+  .input {
+    width: 100%;
+    font-size: 14px;
+    color: #212121;
+    outline: none;
+    border: none;
+    margin: 0 10px 0 4px;
+  }
+
+  &::placeholder {
+    font-family: 'Montserrat-Light';
+    font-size: 13px;
+  }
+
+  .icon-left {
+    cursor: pointer;
+    height: 100%;
+    i {
+      font-size: 20px;
+      padding: 0 6px 0 10px;
+      color: #555;
+    }
+  }
+
+  .icon-right {
+    
+  }
+}

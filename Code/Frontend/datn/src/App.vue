@@ -1,30 +1,16 @@
 <template>
   <div id="app">
-    <div class="main-contain">
-      <the-header></the-header>
-      <the-main></the-main>
-      <the-footer></the-footer>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
-<style scoped>
-@import '@/scss/base/main.scss';
+<style lang="scss">
 </style>
 
 <script>
-import TheHeader from '@/layouts/TheHeader.vue'
-import TheMain from '@/layouts/TheMain.vue'
-import TheFooter from '@/layouts/TheFooter.vue'
 export default {
-    name: 'App',
-    components: {
-        TheHeader,
-        TheMain,
-        TheFooter
-    },
-    props: {
-        
-    }
-}
+  name: "App",
+  components: {},
+  props: {},
+};
 </script>

@@ -1,0 +1,69 @@
+@import "@/scss/base/variables.scss";
+
+.navbar-left {
+  width: 200px;
+  overflow: hidden;
+  height: calc(100vh - 66px);
+  background-color: #24344b;
+  overflow: hidden;
+  transition: all 0.1s ease;
+  .title {
+    height: 50px;
+    padding: 0 10px 0 4px;
+    i {
+      width: 26px;
+      color: #f3f4f6;
+      font-size: 20px;
+      cursor: pointer;
+      padding-left: 6px;
+    }
+    p {
+      flex: 1;
+      font-family: "Montserrat-Bold";
+      font-size: 15px;
+      color: #f3f4f6;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .detail {
+    .detail-item {
+      display: flex;
+      align-items: center;
+      height: 40px;
+      margin: 6px 0;
+      border-left: 4px solid transparent;
+      &:hover {
+        background-color: #404f64;
+        cursor: pointer;
+      }
+      .icon {
+        margin: 0 10px 0 4px;
+        font-size: 22px;
+        color: pink;
+      }
+      .text {
+        font-size: 14px;
+        color: #c8c8c8;
+        padding-right: 10px;
+        line-height: 17px;
+      }
+    }
+    .active {
+      border-left: 4px solid #0dd469;
+      .icon {
+        color: #0dd469;
+      }
+      .text {
+        color: #0dd469;
+      }
+    }
+  }
+  .sub-navbar {
+    
+  }
+}
+
+.navbar-left-hide {
+  width: 40px;
+}

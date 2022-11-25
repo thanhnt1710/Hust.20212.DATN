@@ -119,7 +119,7 @@ namespace Hust.Datn.Controller.Controllers
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
-        private IActionResult HandleException(Exception e)
+        protected IActionResult HandleException(Exception e)
         {
             _serviceResult.Success = false;
             _serviceResult.DevMsg = e.Message;

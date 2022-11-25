@@ -1,0 +1,17 @@
+@import "@/scss/base/variables.scss";
+
+.list-course {
+  margin-bottom: 40px;
+  .title {
+    font-family: "Montserrat-Bold";
+    font-size: 24px;
+    margin: 20px 0 14px 14px;
+  }
+  .content {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    .content-item {
+      margin: 0 12px;
+    }
+  }
+}
