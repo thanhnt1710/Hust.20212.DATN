@@ -17,3 +17,4 @@ E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Service\bin\Debug\net5.0\Microsof
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Service\bin\Debug\net5.0\Microsoft.SqlServer.TransactSql.ScriptDom.dll
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Service\obj\Debug\net5.0\Hust.Datn.Service.csproj.CopyComplete
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Service\bin\Debug\net5.0\Stores\SqlQuery\Category_Paging.sql
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Service\bin\Debug\net5.0\Stores\SqlQuery\Category_GetAllCategory.sql

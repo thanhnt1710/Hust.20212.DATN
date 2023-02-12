@@ -9,6 +9,6 @@ namespace Hust.Datn.Service.Interfaces.Services
 {
     public interface ICategoryService: IBaseService<Category>
     {
-
+        Task<ServiceResult> GetAllCategory();
     }
 }

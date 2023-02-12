@@ -1,35 +1,26 @@
 <template>
-  <div class="dashboard flex-column">
-    <the-header></the-header>
-    <div class="main flex-row">
-      <the-nav-left></the-nav-left>
-      <div class="content scroll flex-column flex-1">
-        <div class="dashboard-data flex-column">
-          <div v-if="!isFilter" class="data-common">
-            <the-slide-show></the-slide-show>
-            <list-course
-              titleList="Khóa học nổi bật"
-              :type="$app.enums.CourseType.Top"
-            ></list-course>
-            <list-course
-              titleList="Khóa học mới nhất"
-              :type="$app.enums.CourseType.New"
-            ></list-course>
-            <list-course
-              titleList="Khóa học được yêu thích nhất"
-              :type="$app.enums.CourseType.Love"
-            ></list-course>
-          </div>
-          <div v-else class="data-filter">
-            <div class="filter-title">Kết quả lọc</div>
-            <div class="filter-result">
-              <div class="filter-item" v-for="course in courses" :key="course.ID">
-                <course :course="course"></course>
-              </div>
-            </div>
-          </div>
+  <div class="dashboard-data flex-column">
+    <div v-if="!isFilter" class="data-common">
+      <the-slide-show></the-slide-show>
+      <list-course
+        titleList="Khóa học nổi bật"
+        :type="$app.enums.CourseType.Top"
+      ></list-course>
+      <list-course
+        titleList="Khóa học mới nhất"
+        :type="$app.enums.CourseType.New"
+      ></list-course>
+      <list-course
+        titleList="Khóa học được yêu thích nhất"
+        :type="$app.enums.CourseType.Love"
+      ></list-course>
+    </div>
+    <div v-else class="data-filter">
+      <div class="filter-title">Kết quả lọc</div>
+      <div class="filter-result">
+        <div class="filter-item" v-for="course in courses" :key="course.ID">
+          <course :course="course"></course>
         </div>
-        <the-footer></the-footer>
       </div>
     </div>
   </div>
@@ -40,20 +31,14 @@
 </style>
 
 <script>
-import TheHeader from "@/layouts/TheHeader.vue";
 import TheSlideShow from "@/layouts/TheSlideShow.vue";
-import TheFooter from "@/layouts/TheFooter.vue";
-import TheNavLeft from "@/layouts/TheNavLeft.vue";
 import ListCourse from "@/components/ListCourse.vue";
 import Course from "@/components/Course.vue";
 
 export default {
   name: "Dashboard",
   components: {
-    TheHeader,
-    TheFooter,
     ListCourse,
-    TheNavLeft,
     TheSlideShow,
     Course,
   },
@@ -94,7 +79,7 @@ export default {
             "http://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png",
         },
         {
-          ID: 3,
+          ID: 4,
           CategoryName: "Thiết kế",
           CourseName: "Học After Effects & Premiere Pro trọn bộ",
           Description:

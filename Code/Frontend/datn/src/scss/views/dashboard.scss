@@ -1,34 +1,21 @@
-.dashboard {
-  .main {
-    .content {
-      overflow: auto;
-      height: calc(100vh - 66px);
-      background: linear-gradient(
-        191.1deg,
-        rgba(255, 192, 67, 0) 14.17%,
-        rgba(255, 192, 67, 0.28) 105.12%
-      );
-      .dashboard-data {
-        background-color: #fafafa;
-        margin: 0 64px;
-        .data-common {
-          margin: auto;
-        }
-        .data-filter {
-          margin: auto;
-          .filter-title {
-            font-family: "Montserrat-Bold";
-            font-size: 24px;
-            margin: 20px 0 14px 14px;
-          }
-          .filter-result {
-            display: grid;
-            grid-template-columns: auto auto auto auto;
-            .filter-item {
-              margin: 0 12px;
-            }
-          }
-        }
+.dashboard-data {
+  background-color: #fafafa;
+  margin: 0 64px;
+  .data-common {
+    margin: auto;
+  }
+  .data-filter {
+    margin: auto;
+    .filter-title {
+      font-family: "Montserrat-Bold";
+      font-size: 24px;
+      margin: 20px 0 14px 14px;
+    }
+    .filter-result {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      .filter-item {
+        margin: 0 12px;
       }
     }
   }

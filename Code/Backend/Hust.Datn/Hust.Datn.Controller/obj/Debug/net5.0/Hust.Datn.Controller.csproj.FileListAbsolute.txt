@@ -38,3 +38,4 @@ E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Hust.
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Hust.Datn.Infrastructure.pdb
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Hust.Datn.Service.pdb
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Stores\SqlQuery\Category_Paging.sql
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Stores\SqlQuery\Category_GetAllCategory.sql

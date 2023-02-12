@@ -1,12 +1,21 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+// modules
+import module_category from "@/stores/modules/module_category.js";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    loading: false,
+  },
   getters: {},
-  mutations: {},
+  mutations: {
+    setLoading(state, value) {
+      state.loading = value;
+    },
+  },
   actions: {},
-  modules: {},
+  modules: { module_category },
 });

@@ -12,9 +12,13 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Stores\SqlQuery\Category_GetAllCategory.sql" />
     <None Remove="Stores\SqlQuery\Category_Paging.sql" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Stores\SqlQuery\Category_GetAllCategory.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Stores\SqlQuery\Category_Paging.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

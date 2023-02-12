@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <base-loading v-show="loading"></base-loading>
     <router-view></router-view>
   </div>
 </template>
@@ -8,9 +9,16 @@
 </style>
 
 <script>
+import { mapState } from "vuex";
+import BaseLoading from "@/components/BaseLoading.vue";
+
 export default {
   name: "App",
-  components: {},
-  props: {},
+  components: { BaseLoading },
+  computed: {
+    ...mapState({
+      loading: (state) => state.loading,
+    }),
+  },
 };
 </script>

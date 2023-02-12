@@ -8,7 +8,7 @@
       <base-input classInput="search-header" placeholder="Tìm kiếm khóa học ..." :iconLeft="{classname: ''}"></base-input>
     </div>
     <div class="header-right flex-row-between">
-      <div class="my-course">Khóa học của tôi</div>
+      <div class="my-course" @click="myCourse">Khóa học của tôi</div>
       <div class="avatar"><img src="../assets/images/avatar.jpg" alt=""></div>
     </div>
   </div>
@@ -23,5 +23,10 @@ export default {
   name: "TheHeader",
   components: {},
   props: {},
+  methods: {
+    myCourse() {
+      this.$router.push("/main/course-detail");
+    }
+  },
 };
 </script>

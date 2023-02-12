@@ -1,0 +1,27 @@
+.chapter {
+  border: 1px solid;
+  padding: 2px;
+  .chapter-name {
+  }
+  .lesson {
+    border: 1px solid;
+    .lesson-name {
+    }
+    .lesson-content {
+      .content-video {
+        .label-video {
+        }
+        .data-video {
+        }
+      }
+      .content-file {
+        .label-file {
+        }
+        .data-file {
+        }
+      }
+    }
+  }
+  .add-chapter {
+  }
+}

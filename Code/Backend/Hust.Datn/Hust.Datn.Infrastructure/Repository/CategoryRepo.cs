@@ -1,4 +1,7 @@
-﻿using Hust.Datn.Service.Entity;
+﻿using Dapper;
+using Hust.Datn.Service.Const;
+using Hust.Datn.Service.Entity;
+using Hust.Datn.Service.Interfaces;
 using Hust.Datn.Service.Interfaces.Repos;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -15,10 +18,18 @@ namespace Hust.Datn.Infrastructure.Repository
         #endregion
 
         #region Constructor
-        public CategoryRepo(IConfiguration configuration) : base(configuration) { }
+        public CategoryRepo(IConfiguration configuration, IFileSystemService fileSystemService) : base(configuration, fileSystemService) { }
         #endregion
 
         #region Methods
+        public async Task<object> GetAllCategory()
+        {
+            var source = await _fileSystemService.GetFileString(FileType.SqlQuery, "Category_GetAllCategory.sql");
+
+            var listCategory = await _dbConnection.QueryAsync<Category>(source);
+
+            return listCategory;
+        }
         #endregion
     }
 }

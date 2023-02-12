@@ -24,6 +24,12 @@ namespace Hust.Datn.Service.Services
         #endregion
 
         #region Methods
+        public async Task<ServiceResult> GetAllCategory()
+        {
+            var serviceResult = new ServiceResult();
+            serviceResult.Data = await _categoryRepo.GetAllCategory();
+            return serviceResult;
+        }
         #endregion
     }
 }

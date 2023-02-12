@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Hust.Datn.Infrastructure.Repository
 {
-    public class BaseRepo<Entity>: IBaseRepo<Entity>
+    public class BaseRepo<Entity> : IBaseRepo<Entity>
     {
         #region Declare
         IConfiguration _configuration;
@@ -20,16 +20,18 @@ namespace Hust.Datn.Infrastructure.Repository
         string _connectionString = string.Empty;
         protected readonly IDbConnection _dbConnection = null;
         protected string _tableName;
+        protected readonly IFileSystemService _fileSystemService;
         #endregion
 
         #region Constructor
-        public BaseRepo(IConfiguration configuration)
+        public BaseRepo(IConfiguration configuration, IFileSystemService fileSystemService)
         {
             _configuration = configuration;
             //Khai báo thông tin kêt nối tới db
             _connectionString = _configuration.GetConnectionString("ConnectionString");
             //Khởi tạo kết nối 
             _dbConnection = new MySqlConnection(_connectionString);
+            _fileSystemService = fileSystemService;
         }
         #endregion
 
@@ -37,9 +39,9 @@ namespace Hust.Datn.Infrastructure.Repository
 
         public async Task<IEnumerable<Entity>> GetAll(string source)
         {
-            
+
             var entities = await _dbConnection.QueryAsync<Entity>(source);
-            
+
             return entities;
         }
 

@@ -49,9 +49,11 @@ namespace Hust.Datn.Controller
             services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IFileSystemService, FileSystemService>();
+            services.AddScoped<IAttachmentService, AttachmentService>();
             // Repo
             services.AddScoped(typeof(IBaseRepo<>), typeof(BaseRepo<>));
             services.AddScoped<ICategoryRepo, CategoryRepo>();
+            services.AddScoped<IAttachmentRepo, AttachmentRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,7 +70,11 @@ namespace Hust.Datn.Controller
 
             app.UseRouting();
 
+            app.UseCors(option => option.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
+
             app.UseAuthorization();
+
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

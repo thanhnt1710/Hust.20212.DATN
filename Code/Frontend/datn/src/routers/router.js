@@ -6,23 +6,46 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "",
-    component: () => import('@/views/dashboard/Dashboard.vue'),
+    component: () => import("@/Main.vue"),
+    redirect: "/main/dashboard",
     meta: {
-      anonymous: true
+      anonymous: true,
     },
+  },
+  {
+    path: "/",
+    component: () => import("@/Main.vue"),
+    redirect: "/main/dashboard",
+    meta: {},
+  },
+  {
+    path: "/main",
+    component: () => import("@/Main.vue"),
+    redirect: "/main/dashboard",
     children: [
       {
-        path: "/",
-        redirect: "/dashboard",
-        meta: {}
+        path: "dashboard",
+        name: "Dashboard",
+        component: () => import("@/views/dashboard/Dashboard.vue"),
       },
       {
-        path: "/dashboard",
-        name: "Dashboard",
-        component: () => import('@/views/dashboard/Dashboard.vue'),
-      }
-    ]
-  }
+        path: "course-detail",
+        name: "CourseDetail",
+        component: () => import("@/views/course/CourseDetail.vue"),
+      },
+      {
+        path: "my-course",
+        name: "ListMyCourse",
+        component: () => import("@/views/course/ListMyCourse.vue"),
+      },
+    ],
+  },
+  
+  {
+    path: "/course-learn",
+    name: "CourseLearn",
+    component: () => import("@/views/course/CourseLearn.vue"),
+  },
 ];
 
 const router = new VueRouter({

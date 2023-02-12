@@ -9,6 +9,6 @@ namespace Hust.Datn.Service.Interfaces.Repos
 {
     public interface ICategoryRepo: IBaseRepo<Category>
     {
-
+        public Task<object> GetAllCategory();
     }
 }

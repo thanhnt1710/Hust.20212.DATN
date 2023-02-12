@@ -1,5 +1,6 @@
 ﻿using Hust.Datn.Service.Entity;
 using Hust.Datn.Service.Interfaces;
+using Hust.Datn.Service.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace Hust.Datn.Controller.Controllers
 {
     public class CategoryController: BaseController<Category>
     {
-        protected readonly IBaseService<Category> _baseService;
+        protected readonly ICategoryService _categoryService;
 
-        public CategoryController(IBaseService<Category> baseService) : base(baseService)
+        public CategoryController(ICategoryService categoryService) : base(categoryService)
         {
-            _baseService = baseService;
+            _categoryService = categoryService;
         }
 
         #region Methods
@@ -23,15 +24,9 @@ namespace Hust.Datn.Controller.Controllers
         {
             try
             {
-                var entities = await _baseService.GetAll();
-                if (entities.Count() > 0)
-                {
-                    return Ok(entities);
-                }
-                else
-                {
-                    return NoContent();
-                }
+                var result = await _categoryService.GetAllCategory();
+
+                return Ok(result);
             }
             catch (Exception e)
             {

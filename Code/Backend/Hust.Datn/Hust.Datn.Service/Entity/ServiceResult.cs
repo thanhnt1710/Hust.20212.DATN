@@ -11,7 +11,7 @@ namespace Hust.Datn.Service.Entity
         /// <summary>
         /// Thành công hay không
         /// </summary>
-        public bool Success { get; set; }
+        public bool Success { get; set; } = true;
 
         public string DevMsg { get; set; }
 

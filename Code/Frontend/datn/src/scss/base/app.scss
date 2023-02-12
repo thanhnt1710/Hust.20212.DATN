@@ -102,3 +102,25 @@ body {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
+
+/* Css cho combobox */
+.multiselect__placeholder {
+	display: none !important;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+	display: none;
+}
+
+.multiselect__option--highlight:after {
+	display: none;
+}
+
+.multiselect__option--selected:after {
+	display: none;
+}
+
+.multiselect__strong {
+	display: none !important;
+}
+
