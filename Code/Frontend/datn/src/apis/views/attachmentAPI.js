@@ -1,4 +1,5 @@
 import BaseAPI from "@/apis/base/baseAPI.js";
+import axios from "axios";
 
 class AttachmentAPI extends BaseAPI {
   constructor() {
@@ -7,10 +8,13 @@ class AttachmentAPI extends BaseAPI {
   }
 
   uploadAttachment(attachment) {
-    return axios.post('https://localhost:44357/Attachment/upload', attachment,{
-        'content-type': "multipart/form-data",
-        'Content-Type': "multipart/form-data",
-    })
+    return axios.post(`${this.baseURL}${this.controller}/upload`, attachment, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "content-type": "multipart/form-data",
+        "Content-Type": "multipart/form-data",
+      },
+    });
   }
 }
 

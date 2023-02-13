@@ -2,15 +2,15 @@
   <div class="chapter" :class="classChapter">
     <div class="chapter-name">
       <base-input
-        :value="dataChapter.ChapterName"
+        :v-model="dataChapter.ChapterName"
         maxLength="255"
         classInput="chapter-name-input"
         placeholder="Nhập tên chương"
       ></base-input>
     </div>
     <lesson v-for="lesson in lessons" :key="lesson.LessonID" :dataLesson="lesson"></lesson>
-    <div class="add-chapter">
-        <base-button textBtn="Thêm chương"></base-button>
+    <div class="add-lesson">
+      <base-button textBtn="Thêm bài giảng" @click="addLesson"></base-button>
     </div>
   </div>
 </template>
@@ -45,6 +45,10 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    addLesson(e) {
+      this.$emit("addLesson");
+    }
+  },
 };
 </script>

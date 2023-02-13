@@ -33,13 +33,20 @@ namespace Hust.Datn.Service.Services
         {
             var result = new ServiceResult();
 
-            var fileKey = Guid.NewGuid().ToString();
-            string uploads = Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), @".."), "Uploads");
+            var root = Path.Combine(Directory.GetCurrentDirectory(), @"..");
+            var folderUrl = Path.Combine(root, "Uploads");
+            if (!Directory.Exists(folderUrl))
+            {
+                Directory.CreateDirectory(folderUrl);
+            }
 
-            // Kiểm tra tồn tại thư mục (chưa có -> tạo)
-            // Thêm đuôi (phân mở rộng) vào filekey
+            // Tạo fileKey
+            var fileGuid = Guid.NewGuid().ToString();
+            // Lấy phần mở rộng
+            var extension = Path.GetExtension(attachment.FileName);
+            var fileKey = $"{fileGuid}{extension}";
 
-            string filePath = Path.Combine(uploads, attachment.FileName);
+            string filePath = Path.Combine(folderUrl, fileKey);
             using (Stream fileStream = new FileStream(filePath, FileMode.Create))
             {
                 await attachment.CopyToAsync(fileStream);

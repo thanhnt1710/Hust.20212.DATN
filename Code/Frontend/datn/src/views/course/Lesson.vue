@@ -22,9 +22,6 @@
         </div>
       </div>
     </div>
-    <div class="add-lesson">
-      <base-button textBtn="Thêm bài giảng"></base-button>
-    </div>
   </div>
 </template>
 
@@ -33,6 +30,7 @@
 </style>
 
 <script>
+import Vue from "vue";
 import AttachmentAPI from "@/apis/views/attachmentAPI.js";
 import axios from "axios";
 
@@ -49,20 +47,48 @@ export default {
     return {};
   },
   methods: {
-    uploadVideo(e) {
+    async uploadVideo(e) {
       const me = this;
       let video = me.$refs.video.files[0];
-      let attachment = new FormData();
-      attachment.append("file", video);
-      axios.post("https://localhost:44357/Attachment/upload", attachment, {
-        "content-type": "multipart/form-data",
-        "Content-Type": "multipart/form-data",
-      });
-      //   AttachmentAPI.uploadAttachment(formData)
-      //     .then((res) => {debugger})
-      //     .catch((err) => {debugger});
+      let extension = video.name.split(".").pop();
+      if (!me.$app.config.extensionVideo.includes(extension)) {
+        me.$refs.video.value = "";
+        Vue.$toast.error("Định dạng video không hợp lệ!");
+      } else {
+        let attachment = new FormData();
+        attachment.append("file", video);
+        await AttachmentAPI.uploadAttachment(attachment)
+          .then((res) => {
+            if (res && res.Data) {
+              dataLesson.VideoID = res.Data;
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     },
-    uploadFile(e) {},
+    async uploadFile(e) {
+      const me = this;
+      let file = me.$refs.file.files[0];
+      let extension = file.name.split(".").pop();
+      if (!me.$app.config.extensionFile.includes(extension)) {
+        me.$refs.file.value = "";
+        Vue.$toast.error("Định dạng file không hợp lệ!");
+      } else {
+        let attachment = new FormData();
+        attachment.append("file", file);
+        await AttachmentAPI.uploadAttachment(attachment)
+          .then((res) => {
+            if (res && res.Data) {
+              dataLesson.FileID = res.Data;
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
   },
 };
 </script>

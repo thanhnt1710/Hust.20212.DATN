@@ -2,8 +2,11 @@
 using Hust.Datn.Service.Const;
 using Hust.Datn.Service.Entity;
 using Hust.Datn.Service.Interfaces;
+using Microsoft.Extensions.Configuration;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -18,6 +21,9 @@ namespace Hust.Datn.Service.Services
         protected readonly ServiceResult _serviceResult;
         protected readonly IFileSystemService _fileSystemService;
         public static readonly Type EntityType = typeof(Entity);
+        protected readonly IConfiguration _configuration;
+        string _connectionString = string.Empty;
+        protected readonly IDbConnection _dbConnection = null;
         #endregion
 
         #region Constructor
@@ -26,6 +32,10 @@ namespace Hust.Datn.Service.Services
             _baseRepo = baseRepo;
             _serviceResult = new ServiceResult() { Success = true };
             _fileSystemService = fileSystemService;
+            //Khai báo thông tin kêt nối tới db
+            _connectionString = _configuration.GetConnectionString("ConnectionString");
+            //Khởi tạo kết nối 
+            _dbConnection = new MySqlConnection(_connectionString);
         }
         #endregion
 

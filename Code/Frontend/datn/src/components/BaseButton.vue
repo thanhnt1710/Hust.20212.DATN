@@ -1,9 +1,6 @@
 <template>
   <div class="base-button" :class="classButton">
-    <button
-        type="button"
-        @click="$emit('click')"
-    >{{textBtn}}</button>
+    <button type="button" @click="clickBtn">{{ textBtn }}</button>
   </div>
 </template>
 
@@ -12,21 +9,23 @@
 </style>
 
 <script>
-
 export default {
   name: "BaseButton",
-  components: {
-    
-  },
+  components: {},
   props: {
     classButton: {
       type: String,
       default: "",
     },
     textBtn: {
-        type: String,
-        default: "",
-    }
+      type: String,
+      default: "",
+    },
+  },
+  methods: {
+    clickBtn(e) {
+      this.$emit("click", e);
+    },
   },
 };
 </script>

@@ -4,6 +4,7 @@ import axios from "axios";
 export default class BaseAPI {
   constructor() {
     this.controller = null;
+    this.baseURL = APIConfig;
     this.BaseAPIConfig = axios.create({
       baseURL: APIConfig,
       headers: {

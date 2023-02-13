@@ -8,20 +8,24 @@
           <div class="label">Tên khóa học</div>
           <div class="data">
             <base-input
+              :modelValue="course.CourseName"
               maxLength="255"
               classInput="input-data"
               placeholder="Nhập tên khóa học"
+              @input="abc"
             ></base-input>
           </div>
         </div>
         <div class="item flex-row flex-center">
           <div class="label">Mô tả khóa học</div>
           <div class="data">
-            <base-input
+            <textarea
+              v-model="course.CourseDescription"
+              rows="4"
+              cols="50"
               maxLength="1000"
-              classInput="input-data"
               placeholder="Nhập mô tả khóa học"
-            ></base-input>
+            ></textarea>
           </div>
         </div>
         <div class="category flex-row-between">
@@ -29,7 +33,7 @@
             <div class="label">Danh mục</div>
             <div class="data">
               <base-combobox
-                :data="dataCategory"
+                :data="course.CategoryID"
                 classCombobox="cb-cat cb-category"
                 :datas="category"
                 :displayFn="displayFnCategory"
@@ -43,7 +47,7 @@
             <div class="label">Danh mục con</div>
             <div class="data">
               <base-combobox
-                :data="dataCategory"
+                :data="course.SubCategoryID"
                 classCombobox="cb-cat cb-subcategory"
                 :datas="category"
                 :displayFn="displayFnCategory"
@@ -63,8 +67,12 @@
           v-for="chapter in course.Chapters"
           :key="chapter.ChapterID"
           :dataChapter="chapter"
+          @addLesson="addLesson(chapter)"
         >
         </chapter>
+      </div>
+      <div class="add-chapter">
+        <base-button textBtn="Thêm chương" @click="addChapter"></base-button>
       </div>
     </div>
     <div class="cd-footer"></div>
@@ -88,10 +96,11 @@ export default {
   data() {
     return {
       moduleCategory: "module_category",
+      moduleCourse: "module_course",
       dataCategory: null,
       course: {
         CourseID: 1,
-        CourseName: "Tên khóa học",
+        CourseName: "",
         CategoryID: 1,
         CategoryName: "Tên danh mục",
         SubCategoryID: 1,
@@ -124,7 +133,7 @@ export default {
             ChapterID: 2,
             ChapterName: "Tên chương 2",
             ChapterParentID: 1,
-            Lesons: [],
+            Lessons: [],
           },
         ],
       },
@@ -132,16 +141,48 @@ export default {
   },
   created() {},
   computed: {
-    category() {
-      return this.$store.state[this.moduleCategory].navbarCategory
-        ? this.$store.state[this.moduleCategory].navbarCategory
-        : [];
-    },
+    ...mapState({
+      formType(state) {
+        return state[this.moduleCourse].formTypeCourseDetail;
+      },
+      category(state) {
+        return state[this.moduleCategory].navbarCategory
+          ? state[this.moduleCategory].navbarCategory
+          : [];
+      },
+      chapterNew(state) {
+        return state[this.moduleCourse].chapterNew;
+      },
+      lessonNew(state) {
+        return state[this.moduleCourse].lessonNew;
+      },
+    }),
   },
   methods: {
     displayFnCategory({ CategoryID, CategoryName }) {
       return `${CategoryName}`;
     },
+
+    addChapter(e) {
+      if (this.course.Chapters && Array.isArray(this.course.Chapters)) {
+        this.course.Chapters.push(this.chapterNew);
+      } else {
+        this.course.Chapters = [this.chapterNew];
+      }
+    },
+
+    addLesson(chapter) {
+      debugger
+      if (chapter.Lessons && Array.isArray(chapter.Lessons)) {
+        chapter.Lessons.push(this.lessonNew);
+      } else {
+        chapter.Lessons = [this.lessonNew];
+      }
+    },
+
+    abc(x) {
+debugger
+    }
   },
 };
 </script>

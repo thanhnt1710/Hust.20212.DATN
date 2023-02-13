@@ -15,7 +15,7 @@ namespace Hust.Datn.Infrastructure.Repository
     public class BaseRepo<Entity> : IBaseRepo<Entity>
     {
         #region Declare
-        IConfiguration _configuration;
+        protected readonly IConfiguration _configuration;
         //Chuoi ket noi
         string _connectionString = string.Empty;
         protected readonly IDbConnection _dbConnection = null;

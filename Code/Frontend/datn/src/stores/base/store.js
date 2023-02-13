@@ -3,6 +3,7 @@ import Vuex from "vuex";
 
 // modules
 import module_category from "@/stores/modules/module_category.js";
+import module_course from "@/stores/modules/module_course.js";
 
 Vue.use(Vuex);
 
@@ -17,5 +18,5 @@ export default new Vuex.Store({
     },
   },
   actions: {},
-  modules: { module_category },
+  modules: { module_category, module_course },
 });
