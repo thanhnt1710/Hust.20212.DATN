@@ -2,6 +2,7 @@
 using Hust.Datn.Service.Interfaces;
 using Hust.Datn.Service.Interfaces.Repos;
 using Hust.Datn.Service.Interfaces.Services;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Hust.Datn.Service.Services
         #endregion
 
         #region Constructor
-        public CategoryService(ICategoryRepo categoryRepo, IFileSystemService fileSystemService) : base(categoryRepo, fileSystemService)
+        public CategoryService(ICategoryRepo categoryRepo, IFileSystemService fileSystemService, IConfiguration configuration) : base(categoryRepo, fileSystemService, configuration)
         {
             _categoryRepo = categoryRepo;
         }

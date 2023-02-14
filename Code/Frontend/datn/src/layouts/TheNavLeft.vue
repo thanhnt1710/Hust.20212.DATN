@@ -11,7 +11,7 @@
       <div
         class="detail-item flex-row"
         :class="{ active: item.Active }"
-        v-for="item in navbarCategory"
+        v-for="item in category"
         :key="item.CategoryID"
       >
         <i
@@ -43,15 +43,20 @@ export default {
     };
   },
   created() {
-    this.getNavbarCategory();
+    this.getCategory();
   },
   computed: {
-    navbarCategory() {
-      return this.$store.state[this.module].navbarCategory;
-    },
+    ...mapState({
+      category(state) {
+        return state[this.module].category;
+      },
+      subCategory(state) {
+        return state[this.module].subCategory;
+      },
+    }),
   },
   methods: {
-    ...mapActions(["getNavbarCategory"]),
+    ...mapActions(["getCategory"]),
 
     toggleNavLeft() {
       this.showNavLeft = !this.showNavLeft;

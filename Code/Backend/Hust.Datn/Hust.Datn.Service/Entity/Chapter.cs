@@ -11,7 +11,7 @@ namespace Hust.Datn.Service.Entity
     {
         public int ChapterID { get; set; }
         public string ChapterName { get; set; }
-        public Guid CourseID { get; set; }
+        public int CourseID { get; set; }
         public int ChapterPrevID { get; set; }
 
         [NotMapped]

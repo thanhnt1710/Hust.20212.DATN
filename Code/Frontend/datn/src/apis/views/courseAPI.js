@@ -5,6 +5,10 @@ class CourseAPI extends BaseAPI {
     super();
     this.controller = "Course";
   }
+
+  saveCourse(payload) {
+    return this.BaseAPIConfig.post(`${this.controller}/save-course`, payload);
+  }
 }
 
 export default new CourseAPI();

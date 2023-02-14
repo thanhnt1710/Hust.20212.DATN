@@ -2,13 +2,17 @@
   <div class="chapter" :class="classChapter">
     <div class="chapter-name">
       <base-input
-        :v-model="dataChapter.ChapterName"
+        v-model="internalChapter.ChapterName"
         maxLength="255"
         classInput="chapter-name-input"
         placeholder="Nhập tên chương"
       ></base-input>
     </div>
-    <lesson v-for="lesson in lessons" :key="lesson.LessonID" :dataLesson="lesson"></lesson>
+    <lesson
+      v-for="(lesson, index) in chapterLesson"
+      :key="lesson.LessonID"
+      v-model="chapterLesson[index]"
+    ></lesson>
     <div class="add-lesson">
       <base-button textBtn="Thêm bài giảng" @click="addLesson"></base-button>
     </div>
@@ -28,27 +32,64 @@ export default {
     Lesson,
   },
   props: {
+    value: {
+      default: {},
+    },
     classChapter: {
       type: String,
       default: "",
     },
-    dataChapter: {
-      type: Object,
-      default: {},
-    },
   },
   computed: {
     lessons() {
-      return this.dataChapter.Lessons ? this.dataChapter.Lessons : [];
+      return this.internalChapter && this.internalChapter.Lessons
+        ? this.internalChapter.Lessons
+        : [];
     },
   },
   data() {
-    return {};
+    return {
+      internalChapter: this.value,
+      chapterLesson: [
+        {
+          LessonID: 1,
+          LessonName: "Tên bài 1",
+          FileID: "",
+          VideoID: "",
+          IsMixQuestion: true,
+          LessonPrevID: 1,
+          ChapterID: 1,
+          CourseID: 1,
+        },
+      ],
+    };
+  },
+  watch: {
+    internalChapter: {
+      handler: function (newValue, oldValue) {
+        this.$emit("input", newValue);
+      },
+      immediate: true,
+    },
+
+    value: {
+      handler: function (newValue, oldValue) {
+        this.internalChapter = newValue;
+      },
+      immediate: true,
+    },
+
+    chapterLesson: {
+      handler: function (newValue, oldValue) {
+        this.internalChapter.Lessons = newValue;
+      },
+      immediate: true,
+    },
   },
   methods: {
     addLesson(e) {
       this.$emit("addLesson");
-    }
+    },
   },
 };
 </script>

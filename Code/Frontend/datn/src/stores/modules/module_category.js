@@ -2,24 +2,41 @@ import Vue from "vue";
 import categoryAPI from "@/apis/views/categoryAPI";
 
 const state = {
-  navbarCategory: null,
+  category: [],
+  subCategory: [],
 };
 
 const getters = {};
 
 const mutations = {
-  setNavbarCategory(state, data) {
-    state.navbarCategory = data;
+  setCategory(state, data) {
+    let category = data;
+    let subCategory = [];
+    if (category && Array.isArray(category)) {
+      category.map((item) => {
+        if (item.SubCategories) {
+          item.SubCategories = JSON.parse(item.SubCategories);
+          subCategory = subCategory.concat(item.SubCategories);
+        }
+      });
+    }
+    state.category = category;
+
+    state.subCategory = [
+      ...new Map(
+        subCategory.map((item) => [item["SubCategoryID"], item])
+      ).values(),
+    ];
   },
 };
 
 const actions = {
-  async getNavbarCategory({ commit }) {
+  async getCategory({ commit }) {
     commit("setLoading", true);
     await categoryAPI
       .getAllCategory()
       .then((res) => {
-        commit("setNavbarCategory", res.data.Data);
+        commit("setCategory", res.data.Data);
         Vue.$toast.success("Oke!");
       })
       .catch((err) => {

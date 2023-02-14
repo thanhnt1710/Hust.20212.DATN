@@ -17,7 +17,7 @@ const state = {
   chapterNew: {
     ChapterID: null,
     ChapterName: null,
-    ChapterParentID: null,
+    ChapterPrevID: null,
   },
 
   lessonNew: {
@@ -38,7 +38,8 @@ const mutations = {
   },
 };
 
-const actions = {};
+const actions = {
+};
 
 export default {
   state,

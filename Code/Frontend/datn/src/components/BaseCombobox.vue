@@ -1,7 +1,7 @@
 <template>
   <div class="base-combobox" :class="classCombobox">
     <multiselect
-      v-model="data"
+      v-model="internalValue"
       :options="datas"
       :custom-label="displayFn"
       :allow-empty="allowEmpty"
@@ -25,6 +25,10 @@ export default {
     Multiselect,
   },
   props: {
+    // v-model
+    value: {
+      default: null,
+    },
     classCombobox: {
       type: String,
       default: "",
@@ -32,10 +36,6 @@ export default {
     placeholder: {
       type: String,
       default: "",
-    },
-    data: {
-      type: [Number, String, Object],
-      default: null,
     },
     // Dữ liệu combo
     datas: {
@@ -58,6 +58,26 @@ export default {
     trackBy: {
       type: String,
       default: "",
+    },
+  },
+  data() {
+    return {
+      internalValue: this.value,
+    };
+  },
+  watch: {
+    internalValue: {
+      handler: function (newValue, oldValue) {
+        this.$emit("input", newValue);
+      },
+      immediate: true,
+    },
+
+    value: {
+      handler: function (newValue, oldValue) {
+        this.internalValue = newValue;
+      },
+      immediate: true,
     },
   },
 };

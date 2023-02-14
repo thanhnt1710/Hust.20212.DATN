@@ -2,7 +2,7 @@
   <div class="lesson">
     <div class="lesson-name">
       <base-input
-        :value="dataLesson.LessonName"
+        v-model="internalLesson.LessonName"
         maxLength="255"
         classInput="lesson-name-input"
         placeholder="Nhập tên bài"
@@ -38,13 +38,29 @@ export default {
   name: "Lesson",
   components: {},
   props: {
-    dataLesson: {
-      type: Object,
+    value: {
       default: {},
     },
   },
   data() {
-    return {};
+    return {
+      internalLesson: this.value,
+    };
+  },
+  watch: {
+    internalLesson: {
+      handler: function (newValue, oldValue) {
+        this.$emit("input", newValue);
+      },
+      immediate: true,
+    },
+
+    value: {
+      handler: function (newValue, oldValue) {
+        this.internalLesson = newValue;
+      },
+      immediate: true,
+    },
   },
   methods: {
     async uploadVideo(e) {
@@ -60,7 +76,7 @@ export default {
         await AttachmentAPI.uploadAttachment(attachment)
           .then((res) => {
             if (res && res.Data) {
-              dataLesson.VideoID = res.Data;
+              me.internalLesson.VideoID = res.Data;
             }
           })
           .catch((err) => {
@@ -81,7 +97,7 @@ export default {
         await AttachmentAPI.uploadAttachment(attachment)
           .then((res) => {
             if (res && res.Data) {
-              dataLesson.FileID = res.Data;
+              me.internalLesson.FileID = res.Data;
             }
           })
           .catch((err) => {

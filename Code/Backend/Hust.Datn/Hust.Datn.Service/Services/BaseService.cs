@@ -27,11 +27,12 @@ namespace Hust.Datn.Service.Services
         #endregion
 
         #region Constructor
-        public BaseService(IBaseRepo<Entity> baseRepo, IFileSystemService fileSystemService)
+        public BaseService(IBaseRepo<Entity> baseRepo, IFileSystemService fileSystemService, IConfiguration configuration)
         {
             _baseRepo = baseRepo;
             _serviceResult = new ServiceResult() { Success = true };
             _fileSystemService = fileSystemService;
+            _configuration = configuration;
             //Khai báo thông tin kêt nối tới db
             _connectionString = _configuration.GetConnectionString("ConnectionString");
             //Khởi tạo kết nối 

@@ -8,11 +8,10 @@
           <div class="label">Tên khóa học</div>
           <div class="data">
             <base-input
-              :modelValue="course.CourseName"
+              v-model="course.CourseName"
               maxLength="255"
               classInput="input-data"
               placeholder="Nhập tên khóa học"
-              @input="abc"
             ></base-input>
           </div>
         </div>
@@ -33,7 +32,7 @@
             <div class="label">Danh mục</div>
             <div class="data">
               <base-combobox
-                :data="course.CategoryID"
+                v-model="course.Category"
                 classCombobox="cb-cat cb-category"
                 :datas="category"
                 :displayFn="displayFnCategory"
@@ -47,13 +46,13 @@
             <div class="label">Danh mục con</div>
             <div class="data">
               <base-combobox
-                :data="course.SubCategoryID"
+                v-model="course.SubCategory"
                 classCombobox="cb-cat cb-subcategory"
-                :datas="category"
-                :displayFn="displayFnCategory"
-                placeholder="Chọn danh mục"
-                label="CategoryName"
-                track-by="CategoryID"
+                :datas="subCategory"
+                :displayFn="displayFnSubCategory"
+                placeholder="Chọn danh mục con"
+                label="SubCategoryName"
+                track-by="SubCategoryID"
               ></base-combobox>
             </div>
           </div>
@@ -64,9 +63,9 @@
       <div class="title">Nội dung khóa học</div>
       <div class="main-content">
         <chapter
-          v-for="chapter in course.Chapters"
+          v-for="(chapter, index) in courseChapter"
           :key="chapter.ChapterID"
-          :dataChapter="chapter"
+          v-model="courseChapter[index]"
           @addLesson="addLesson(chapter)"
         >
         </chapter>
@@ -75,7 +74,9 @@
         <base-button textBtn="Thêm chương" @click="addChapter"></base-button>
       </div>
     </div>
-    <div class="cd-footer"></div>
+    <div class="cd-footer">
+      <base-button @click="saveCourse" textBtn="Lưu"></base-button>
+    </div>
   </div>
 </template>
 
@@ -87,6 +88,8 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import Chapter from "@/views/course/Chapter.vue";
+import CourseAPI from "@/apis/views/courseAPI.js"
+
 export default {
   name: "CourseDetail",
   components: {
@@ -98,44 +101,35 @@ export default {
       moduleCategory: "module_category",
       moduleCourse: "module_course",
       dataCategory: null,
+      courseChapter: [
+        {
+          ChapterID: 1,
+          ChapterName: "Tên chương 1",
+          ChapterPrevID: 0,
+          CourseID: 1,
+        },
+        {
+          ChapterID: 2,
+          ChapterName: "Tên chương 2",
+          ChapterPrevID: 1,
+          CourseID: 1,
+        },
+      ],
       course: {
         CourseID: 1,
-        CourseName: "",
+        CourseName: "Tên khóa học",
+        CourseDescription: "123",
         CategoryID: 1,
-        CategoryName: "Tên danh mục",
         SubCategoryID: 1,
-        SubCategoryName: "Tên danh mục con",
-        Chapters: [
-          {
-            ChapterID: 1,
-            ChapterName: "Tên chương 1",
-            ChapterParentID: 0,
-            Lessons: [
-              {
-                LessonID: 1,
-                LessonName: "Tên bài 1",
-                LessonParentID: 0,
-                FileID: "",
-                VideoID: "",
-                IsMixQuestion: true,
-              },
-              {
-                LessonID: 2,
-                LessonName: "Tên bài 2",
-                LessonParentID: 1,
-                FileID: "",
-                VideoID: "",
-                IsMixQuestion: true,
-              },
-            ],
-          },
-          {
-            ChapterID: 2,
-            ChapterName: "Tên chương 2",
-            ChapterParentID: 1,
-            Lessons: [],
-          },
-        ],
+        Category: {
+          CategoryID: 3,
+          CategoryName: "Kỹ năng con người",
+          CreatedBy: "",
+          CreatedDate: "2022-11-26T00:04:07",
+          ModifiedBy: "",
+          ModifiedDate: "2022-11-26T00:04:07",
+        },
+        SubCategory: {},
       },
     };
   },
@@ -146,9 +140,10 @@ export default {
         return state[this.moduleCourse].formTypeCourseDetail;
       },
       category(state) {
-        return state[this.moduleCategory].navbarCategory
-          ? state[this.moduleCategory].navbarCategory
-          : [];
+        return state[this.moduleCategory].category;
+      },
+      subCategory(state) {
+        return state[this.moduleCategory].subCategory;
       },
       chapterNew(state) {
         return state[this.moduleCourse].chapterNew;
@@ -158,9 +153,22 @@ export default {
       },
     }),
   },
+  watch: {
+    courseChapter: {
+      handler: function (newValue, oldValue) {
+        this.course.Chapters = newValue;
+      },
+      immediate: true,
+    },
+  },
   methods: {
+    ...mapActions(["saveCourse"]),
     displayFnCategory({ CategoryID, CategoryName }) {
       return `${CategoryName}`;
+    },
+
+    displayFnSubCategory({ SubCategoryID, SubCategoryName }) {
+      return `${SubCategoryName}`;
     },
 
     addChapter(e) {
@@ -172,7 +180,6 @@ export default {
     },
 
     addLesson(chapter) {
-      debugger
       if (chapter.Lessons && Array.isArray(chapter.Lessons)) {
         chapter.Lessons.push(this.lessonNew);
       } else {
@@ -180,9 +187,13 @@ export default {
       }
     },
 
-    abc(x) {
-debugger
-    }
+    async saveCourse() {
+      const me = this;
+
+      await CourseAPI.saveCourse(me.course)
+        .then((res) => {})
+        .catch((err) => {});
+    },
   },
 };
 </script>

@@ -2,8 +2,10 @@
 using Hust.Datn.Service.Interfaces;
 using Hust.Datn.Service.Interfaces.Repos;
 using Hust.Datn.Service.Interfaces.Services;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -18,7 +20,7 @@ namespace Hust.Datn.Service.Services
         #endregion
 
         #region Constructor
-        public CourseService(ICourseRepo courseRepo, IFileSystemService fileSystemService) : base(courseRepo, fileSystemService)
+        public CourseService(ICourseRepo courseRepo, IFileSystemService fileSystemService, IConfiguration configuration) : base(courseRepo, fileSystemService, configuration)
         {
             _courseRepo = courseRepo;
         }
@@ -29,18 +31,29 @@ namespace Hust.Datn.Service.Services
         public async Task<ServiceResult> SaveCourse(Course course)
         {
             var result = new ServiceResult();
-            SqlTransaction tran = null;
-            using (var cnn = _dbConnection)
+            IDbTransaction tran = null;
+            _dbConnection.Open();
+
+            using (tran = _dbConnection.BeginTransaction())
             {
-                tran = (SqlTransaction)cnn.BeginTransaction();
-                // Insert khóa học
+                try
+                {
+                    // Insert khóa học
 
-                // Insert chương
+                    // Insert chương
 
-                //Insert bài
+                    //Insert bài
+
+                    tran.Commit();
+                }
+                catch (Exception e)
+                {
+                    tran.Rollback();
+                }
             }
+            _dbConnection.Close();
 
-                return result;
+            return result;
         }
         #endregion
     }

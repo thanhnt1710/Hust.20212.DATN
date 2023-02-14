@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,9 +18,13 @@ namespace Hust.Datn.Service.Entity
         public string FileID { get; set; }
         public string VideoID { get; set; }
         public bool IsMixQuestion { get; set; }
+        [NotMapped]
         public string CreatedBy { get; set; }
+        [NotMapped]
         public string ModifiedBy { get; set; }
+        [NotMapped]
         public DateTime CreatedDate { get; set; }
+        [NotMapped]
         public DateTime ModifiedDate { get; set; }
     }
 }

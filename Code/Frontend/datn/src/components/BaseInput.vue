@@ -8,14 +8,14 @@
       <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
     </div>
     <input
-      v-model="modelValue"
+      v-model="internalValue"
       type="text"
       class="input"
       :maxlength="maxlength"
       :placeholder="placeholder"
       @focus="$emit('focusInput')"
       @blur="$emit('blurInput')"
-      @input="actionInput"
+      @input="$emit('input')"
       @keyup.enter="$emit('enterInput')"
     />
     <div
@@ -35,8 +35,8 @@ export default {
   name: "BaseInput",
   components: {},
   props: {
-    modelValue: {
-      type: String,
+    // v-model
+    value: {
       default: null,
     },
     classInput: {
@@ -51,7 +51,6 @@ export default {
       type: String,
       default: "",
     },
-    // {class: className}
     iconLeft: {
       type: Object,
       default: null,
@@ -61,11 +60,26 @@ export default {
       default: null,
     },
   },
-  emits: ['update:modelValue'],
-  methods: {
-    actionInput(e) {
-      this.$emit('input', e.target.value)
-    }
+  data() {
+    return {
+      internalValue: this.value,
+    };
   },
+  watch: {
+    internalValue: {
+      handler: function (newValue, oldValue) {
+        this.$emit("input", newValue);
+      },
+      immediate: true,
+    },
+
+    value: {
+      handler: function (newValue, oldValue) {
+        this.internalValue = newValue;
+      },
+      immediate: true,
+    },
+  },
+  methods: {},
 };
 </script>

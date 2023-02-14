@@ -16,7 +16,7 @@ namespace Hust.Datn.Service.Entity
         public string CategoryName { get; set; }
 
         [NotMapped]
-        public List<SubCategory> SubCategories { get; set; }
+        public string SubCategories { get; set; }
 
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }

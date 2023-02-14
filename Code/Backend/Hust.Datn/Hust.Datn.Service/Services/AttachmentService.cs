@@ -4,6 +4,7 @@ using Hust.Datn.Service.Interfaces.Repos;
 using Hust.Datn.Service.Interfaces.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,7 +22,7 @@ namespace Hust.Datn.Service.Services
         #endregion
 
         #region Constructor
-        public AttachmentService(IAttachmentRepo attachmentRepo, IFileSystemService fileSystemService, IWebHostEnvironment environment) : base(attachmentRepo, fileSystemService)
+        public AttachmentService(IAttachmentRepo attachmentRepo, IFileSystemService fileSystemService, IWebHostEnvironment environment, IConfiguration configuration) : base(attachmentRepo, fileSystemService, configuration)
         {
             _attachmentRepo = attachmentRepo;
             _hostingEnvironment = environment;
