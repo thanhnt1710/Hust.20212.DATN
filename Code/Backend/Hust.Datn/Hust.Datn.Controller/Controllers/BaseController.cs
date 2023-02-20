@@ -1,5 +1,6 @@
 ﻿using Hust.Datn.Service.Entity;
 using Hust.Datn.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace Hust.Datn.Controller.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class BaseController<Entity> : ControllerBase
     {
         #region Declare
@@ -104,6 +106,26 @@ namespace Hust.Datn.Controller.Controllers
                 var serviceResult = await _baseService.Delete(parameter);
 
                 return Ok(serviceResult);
+            }
+            catch (Exception e)
+            {
+                return HandleException(e);
+            }
+        }
+
+        /// <summary>
+        /// Lấy ID khóa chính lớn nhất
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        [HttpGet("max-id")]
+        public async Task<IActionResult> GetMaxID()
+        {
+            try
+            {
+                var result = await _baseService.GetMaxID();
+
+                return Ok(result);
             }
             catch (Exception e)
             {

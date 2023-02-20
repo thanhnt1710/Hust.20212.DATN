@@ -5,17 +5,22 @@
       <div class="app-name flex">Tên của App</div>
     </div>
     <div class="header-mid">
-      <base-input classInput="search-header" placeholder="Tìm kiếm khóa học ..." :iconLeft="{classname: ''}"></base-input>
+      <base-input
+        classInput="search-header"
+        placeholder="Tìm kiếm khóa học ..."
+        :iconLeft="{ classname: '' }"
+      ></base-input>
     </div>
+    <base-button textBtn="Đăng xuất" @click="logout"></base-button>
     <div class="header-right flex-row-between">
       <div class="my-course" @click="myCourse">Khóa học của tôi</div>
-      <div class="avatar"><img src="../assets/images/avatar.jpg" alt=""></div>
+      <div class="avatar"><img src="../assets/images/avatar.jpg" alt="" /></div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "@/scss/base/header.scss";
+@import "@/scss/views/header.scss";
 </style>
 
 <script>
@@ -26,7 +31,11 @@ export default {
   methods: {
     myCourse() {
       this.$router.push("/main/course-detail");
-    }
+    },
+    logout() {
+      localStorage.removeItem("token");
+      this.$router.push("/login");
+    },
   },
 };
 </script>

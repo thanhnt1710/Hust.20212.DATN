@@ -10,7 +10,7 @@
 
 <script>
 import { mapState } from "vuex";
-import BaseLoading from "@/components/BaseLoading.vue";
+import BaseLoading from "@/components/base/BaseLoading.vue";
 
 export default {
   name: "App",

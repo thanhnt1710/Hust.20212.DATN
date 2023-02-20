@@ -10,5 +10,7 @@ namespace Hust.Datn.Service.Interfaces.Services
     public interface ICourseService : IBaseService<Course>
     {
         Task<ServiceResult> SaveCourse(Course course);
+
+        Task<ServiceResult> GetMaxID();
     }
 }

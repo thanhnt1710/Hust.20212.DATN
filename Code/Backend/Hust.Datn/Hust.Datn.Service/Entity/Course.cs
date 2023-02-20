@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hust.Datn.Service.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace Hust.Datn.Service.Entity
 {
+    [View(MaxID = "Course_GetMaxID.sql")]
     public class Course
     {
-        public int CourseID { get; set; }
+        public Guid CourseID { get; set; }
         public string CourseName { get; set; }
         public string CourseDescription { get; set; }
         public int CategoryID { get; set; }
         public int SubCategoryID { get; set; }
+        public Guid UserID { get; set; }
         [NotMapped]
         public string CreatedBy { get; set; }
         [NotMapped]
@@ -25,5 +28,12 @@ namespace Hust.Datn.Service.Entity
 
         [NotMapped]
         public List<Chapter> Chapters { get; set; }
+    }
+
+    public class MaxID
+    {
+        public Guid CourseID { get; set; }
+        public int ChapterID { get; set; }
+        public int LessonID { get; set; }
     }
 }

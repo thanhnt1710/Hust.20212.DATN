@@ -7,7 +7,11 @@ class CourseAPI extends BaseAPI {
   }
 
   saveCourse(payload) {
-    return this.BaseAPIConfig.post(`${this.controller}/save-course`, payload);
+    return this.postAxios(`${this.controller}/save-course`, payload);
+  }
+
+  getMaxID() {
+    return this.getAxios(`${this.controller}/max-id`);
   }
 }
 

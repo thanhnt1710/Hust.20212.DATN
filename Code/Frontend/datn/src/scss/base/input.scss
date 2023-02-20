@@ -4,6 +4,7 @@
   border: 1px solid $border-color;
   border-radius: 6px;
   height: 40px;
+  background-color: $white-color;
   .input {
     width: 100%;
     font-size: 14px;
@@ -16,6 +17,10 @@
   &::placeholder {
     font-family: 'Montserrat-Light';
     font-size: 13px;
+  }
+
+  &:focus-within {
+    border: 1px solid $focus-color;
   }
 
   .icon-left {

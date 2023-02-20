@@ -26,7 +26,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "@/scss/base/navleft.scss";
+@import "@/scss/views/navleft.scss";
 </style>
 
 <script>

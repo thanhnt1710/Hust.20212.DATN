@@ -7,7 +7,7 @@ class CategoryAPI extends BaseAPI {
   }
 
   getAllCategory() {
-    return this.BaseAPIConfig.get(`${this.controller}/list-category`);
+    return this.getAxios(`${this.controller}/list-category`);
   }
 }
 

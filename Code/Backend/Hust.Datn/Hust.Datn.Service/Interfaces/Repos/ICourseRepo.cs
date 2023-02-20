@@ -9,5 +9,6 @@ namespace Hust.Datn.Service.Interfaces.Repos
 {
     public interface ICourseRepo : IBaseRepo<Course>
     {
+        Task<MaxID> GetMaxID(string sql);
     }
 }

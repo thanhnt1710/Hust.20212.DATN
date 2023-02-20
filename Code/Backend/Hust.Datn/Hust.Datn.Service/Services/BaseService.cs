@@ -78,6 +78,12 @@ namespace Hust.Datn.Service.Services
         public virtual async Task<ServiceResult> Delete(List<Entity> entities) {
             return await _baseRepo.Delete(entities);
         }
+
+        public virtual async Task<ServiceResult> GetMaxID()
+        {
+            var result = new ServiceResult();
+            return result;
+        }
         #endregion
 
     }

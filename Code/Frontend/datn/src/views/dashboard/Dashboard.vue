@@ -19,7 +19,7 @@
       <div class="filter-title">Kết quả lọc</div>
       <div class="filter-result">
         <div class="filter-item" v-for="course in courses" :key="course.ID">
-          <course :course="course"></course>
+          <course-box :course="course"></course-box>
         </div>
       </div>
     </div>
@@ -32,15 +32,15 @@
 
 <script>
 import TheSlideShow from "@/layouts/TheSlideShow.vue";
-import ListCourse from "@/components/ListCourse.vue";
-import Course from "@/components/Course.vue";
+import ListCourse from "@/components/views/ListCourseBox.vue";
+import CourseBox from "@/components/views/CourseBox.vue";
 
 export default {
   name: "Dashboard",
   components: {
     ListCourse,
     TheSlideShow,
-    Course,
+    CourseBox,
   },
   props: {},
   data() {

@@ -39,3 +39,10 @@ E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Hust.
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Hust.Datn.Service.pdb
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Stores\SqlQuery\Category_Paging.sql
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Stores\SqlQuery\Category_GetAllCategory.sql
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll

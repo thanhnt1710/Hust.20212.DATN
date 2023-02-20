@@ -9,7 +9,7 @@
     </div>
     <input
       v-model="internalValue"
-      type="text"
+      :type="type"
       class="input"
       :maxlength="maxlength"
       :placeholder="placeholder"
@@ -58,6 +58,10 @@ export default {
     iconRight: {
       type: Object,
       default: null,
+    },
+    type: {
+      type: String,
+      default: "text",
     },
   },
   data() {

@@ -18,5 +18,7 @@ namespace Hust.Datn.Service.Interfaces
         Task<ServiceResult> Update(Entity entity);
 
         Task<ServiceResult> Delete(List<Entity> entities);
+
+        Task<ServiceResult> GetMaxID();
     }
 }

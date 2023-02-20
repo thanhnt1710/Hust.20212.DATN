@@ -65,6 +65,18 @@ namespace Hust.Datn.Service.Services
 
             return result;
         }
+
+        public async Task<Stream> ViewAttachment(string fileKey)
+        {
+            var root = Path.Combine(Directory.GetCurrentDirectory(), @"..");
+            var folderUrl = Path.Combine(root, "Uploads");
+
+            string filePath = Path.Combine(folderUrl, fileKey);
+
+            string[] a = File.ReadAllLines(filePath);
+
+
+        }
         #endregion
     }
 }

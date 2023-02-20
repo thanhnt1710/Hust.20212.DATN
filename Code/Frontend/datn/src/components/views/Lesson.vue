@@ -1,12 +1,17 @@
 <template>
   <div class="lesson">
-    <div class="lesson-name">
+    <div class="lesson-name flex-center">
       <base-input
         v-model="internalLesson.LessonName"
         maxLength="255"
         classInput="lesson-name-input"
         placeholder="Nhập tên bài"
       ></base-input>
+      <i
+        title="Xóa bài"
+        class="fas fa-trash-alt remove-lesson"
+        @click="removeLesson"
+      ></i>
     </div>
     <div class="lesson-content">
       <div class="content-video">
@@ -63,6 +68,9 @@ export default {
     },
   },
   methods: {
+    removeLesson() {
+      this.$emit("removeLesson");
+    },
     async uploadVideo(e) {
       const me = this;
       let video = me.$refs.video.files[0];
@@ -75,11 +83,12 @@ export default {
         attachment.append("file", video);
         await AttachmentAPI.uploadAttachment(attachment)
           .then((res) => {
-            if (res && res.Data) {
-              me.internalLesson.VideoID = res.Data;
+            if (res && res.data && res.data.Data) {
+              me.internalLesson.VideoID = res.data.Data;
             }
           })
           .catch((err) => {
+            Vue.$toast.error("Có lỗi xảy ra vui lòng thử lại sau!");
             console.log(err);
           });
       }
@@ -96,11 +105,12 @@ export default {
         attachment.append("file", file);
         await AttachmentAPI.uploadAttachment(attachment)
           .then((res) => {
-            if (res && res.Data) {
-              me.internalLesson.FileID = res.Data;
+            if (res && res.data && res.data.Data) {
+              me.internalLesson.FileID = res.data.Data;
             }
           })
           .catch((err) => {
+            Vue.$toast.error("Có lỗi xảy ra vui lòng thử lại sau!");
             console.log(err);
           });
       }

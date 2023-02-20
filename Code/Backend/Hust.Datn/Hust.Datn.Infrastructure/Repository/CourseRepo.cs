@@ -1,4 +1,5 @@
-﻿using Hust.Datn.Service.Entity;
+﻿using Dapper;
+using Hust.Datn.Service.Entity;
 using Hust.Datn.Service.Interfaces;
 using Hust.Datn.Service.Interfaces.Repos;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,11 @@ namespace Hust.Datn.Infrastructure.Repository
         #endregion
 
         #region Methods
+        public async Task<MaxID> GetMaxID(string sql)
+        {
+            return await _dbConnection.QueryFirstAsync<MaxID>(sql);
+        }
+
         #endregion
 
     }

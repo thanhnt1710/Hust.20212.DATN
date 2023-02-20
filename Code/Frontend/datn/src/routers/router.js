@@ -19,6 +19,16 @@ const routes = [
     meta: {},
   },
   {
+    path: "/login",
+    component: () => import("@/layouts/TheLogin.vue"),
+    meta: {},
+  },
+  {
+    path: "/register",
+    component: () => import("@/layouts/TheRegister.vue"),
+    meta: {},
+  },
+  {
     path: "/main",
     component: () => import("@/Main.vue"),
     redirect: "/main/dashboard",

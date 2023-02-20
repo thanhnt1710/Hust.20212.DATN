@@ -1,0 +1,105 @@
+@import "@/scss/base/variables.scss";
+
+.login {
+  width: 100%;
+  height: 100%;
+  .warp-login {
+    position: fixed;
+    background: url("@/assets/images/background_login.jpg") no-repeat center
+      center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    .form-login {
+      background-color: $white-color;
+      margin: 0 auto;
+      width: 500px;
+      border-radius: 8px;
+      padding: 0px 30px 20px 30px;
+      .validate-login {
+        color: red;
+        margin-top: 14px;
+      }
+      .logo {
+        width: 100px;
+        height: 100px;
+      }
+      .title {
+        font-weight: bold;
+        font-size: 23px;
+        font-family: "Montserrat-Bold";
+      }
+      .input-login {
+        margin: 12px 0;
+        width: 100%;
+        .label {
+          font-size: 16px;
+          margin-bottom: 8px;
+        }
+        .content {
+        }
+      }
+      .login-btn {
+      }
+      .no-account {
+        margin-top: 14px;
+        p {
+          color: blue;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.register {
+  width: 100%;
+  height: 100%;
+  .warp-register {
+    position: fixed;
+    background: url("@/assets/images/background_register.jpeg") no-repeat center
+      center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    .form-register {
+      background-color: $white-color;
+      margin: 0 auto;
+      width: 500px;
+      border-radius: 8px;
+      padding: 0px 30px 20px 30px;
+      .validate-register {
+        color: red;
+        margin-top: 14px;
+      }
+      .logo {
+        width: 100px;
+        height: 100px;
+      }
+      .title {
+        font-weight: bold;
+        font-size: 23px;
+        font-family: "Montserrat-Bold";
+      }
+      .input-register {
+        margin: 12px 0;
+        width: 100%;
+        .label {
+          font-size: 16px;
+          margin-bottom: 8px;
+        }
+        .content {
+        }
+      }
+      .register-btn {
+      }
+      .has-account {
+        margin-top: 14px;
+        p {
+          color: blue;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 ﻿using Hust.Datn.Service.Entity;
 using Hust.Datn.Service.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Hust.Datn.Controller.Controllers
 {
+    [Authorize]
     public class AttachmentController : BaseController<Attachment>
     {
         #region Declare
@@ -31,6 +33,21 @@ namespace Hust.Datn.Controller.Controllers
                 var result = await _attachmentService.UploadAttachment(file);
 
                 return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return HandleException(e);
+            }
+        }
+
+        [HttpGet("view/{fileKey}")]
+        public async Task<FileStreamResult> ViewAttachment(string fileKey)
+        {
+            try
+            {
+                Stream result = await _attachmentService.ViewAttachment(fileKey);
+
+                return File();
             }
             catch (Exception e)
             {

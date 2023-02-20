@@ -1,36 +1,64 @@
 .course-detail {
-    .cd-title {
-        font-weight: bold;
-        font-size: 24px;
-    padding: 20px 0 20px 40px;
+  background-color: #f7f8fa;
+  .cd-title {
+    z-index: 1;
+    font-family: "Montserrat-Bold";
+    font-weight: bold;
+    font-size: 24px;
+    padding: 20px 0;
+    position: sticky;
+    top: 0px;
+    border-bottom: 1px solid #a9adb1;
+    background-color: #f7f8fa;
+  }
+  .cd-infor {
+    margin: 10px 20px;
+    .title {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 10px;
     }
-    .cd-infor {
-        margin-right: 20px;
-        .title {
-            font-weight: bold;
-            font-size: 18px;
+    .detail {
+      .item {
+        margin: 10px 0;
+        .label {
         }
-        .detail {
-            .item {
-                .label {
-
-                }
-                .data {
-                    .input-data {
-
-                    }
-                    .cb-cat {
-                        
-                    }
-                    .cb-category {
-                    }
-                    .cb-subcategory {
-                    }
-                }
-            }
+        .data {
+          .input-data {
+          }
+          .cb-cat {
+          }
+          .cb-category {
+          }
+          .cb-subcategory {
+          }
+          textarea {
+            width: 100%;
+            border: 1px solid #e8e8e8;
+            border-radius: 6px;
+            background-color: #ffffff;
+          }
         }
+      }
     }
-    .cd-content {
-
+  }
+  .cd-content {
+    margin: 10px 20px;
+    .title {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 10px;
     }
+  }
+  .cd-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    height: 50px;
+    border-top: 1px solid #a9adb1;
+    background-color: #f7f8fa;
+    padding-right: 20px;
+  }
 }

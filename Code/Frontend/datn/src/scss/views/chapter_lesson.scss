@@ -1,11 +1,38 @@
 .chapter {
-  border: 1px solid;
-  padding: 2px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 6px;
+  background-color: white;
+  border: 1px solid #4a4d50;
   .chapter-name {
+    margin-bottom: 10px;
+    .chapter-name-input {
+      flex: 1;
+    }
+    .remove-chapter {
+      cursor: pointer;
+      font-size: 24px;
+      width: 26px;
+      color: red;
+      margin-left: 12px;
+    }
   }
   .lesson {
-    border: 1px solid;
+    margin: 0 10px 8px 10px;
+    padding: 8px;
+    border: 1px solid #8f9397;
+    border-radius: 4px;
     .lesson-name {
+      .lesson-name-input {
+        flex: 1;
+      }
+      .remove-lesson {
+        cursor: pointer;
+        font-size: 22px;
+        width: 26px;
+        color: red;
+        margin-left: 12px;
+      }
     }
     .lesson-content {
       .content-video {

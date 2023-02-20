@@ -1,0 +1,4 @@
+- Thêm mới khóa học: 
+	Validate
+	Hiển thị tệp đính kèm
+- Màn chi tiết học

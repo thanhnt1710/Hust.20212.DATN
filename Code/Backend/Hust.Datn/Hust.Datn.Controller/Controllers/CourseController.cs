@@ -1,5 +1,6 @@
 ﻿using Hust.Datn.Service.Entity;
 using Hust.Datn.Service.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Hust.Datn.Controller.Controllers
 {
+    [Authorize]
     public class CourseController : BaseController<Course>
     {
         protected readonly ICourseService _courseService;
@@ -24,6 +26,25 @@ namespace Hust.Datn.Controller.Controllers
             try
             {
                 var result = await _courseService.SaveCourse(course);
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return HandleException(e);
+            }
+        }
+
+        /// <summary>
+        /// Lấy ID lớn nhất 
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("max-id")]
+        public async Task<IActionResult> GetMaxID()
+        {
+            try
+            {
+                var result = await _courseService.GetMaxID();
 
                 return Ok(result);
             }

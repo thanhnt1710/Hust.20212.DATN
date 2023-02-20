@@ -1,6 +1,7 @@
 ﻿using Hust.Datn.Service.Entity;
 using Hust.Datn.Service.Interfaces;
 using Hust.Datn.Service.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Hust.Datn.Controller.Controllers
 {
+    [Authorize]
     public class CategoryController: BaseController<Category>
     {
         protected readonly ICategoryService _categoryService;

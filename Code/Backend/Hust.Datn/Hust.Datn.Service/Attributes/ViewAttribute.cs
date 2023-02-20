@@ -11,5 +11,7 @@ namespace Hust.Datn.Service.Attributes
         public string Paging { get; set; }
 
         public string Execute { get; set; }
+
+        public string MaxID { get; set; }
     }
 }

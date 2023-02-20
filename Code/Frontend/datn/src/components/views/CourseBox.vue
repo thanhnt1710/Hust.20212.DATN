@@ -4,7 +4,7 @@
   >
     <!-- <div v-show="overlay" class="course-overlay"></div> -->
     <div class="course-img">
-      <img src="../assets/images/imageproxy.webp" alt="" />
+      <img src="../../assets/images/imageproxy.webp" alt="" />
     </div>
     <div class="course-data">
       <div class="course-category line-break-2">{{ course.CategoryName }}</div>
@@ -18,12 +18,12 @@
 </template>
 
 <style lang="scss">
-@import "@/scss/base/course.scss";
+@import "@/scss/views/course.scss";
 </style>
 
 <script>
 export default {
-  name: "Course",
+  name: "CourseBox",
   components: {},
   props: {
     course: {

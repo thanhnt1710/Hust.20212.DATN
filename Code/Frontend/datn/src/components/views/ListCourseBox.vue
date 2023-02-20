@@ -10,11 +10,11 @@
 </template>
 
 <style lang="scss" scoped>
-@import '@/scss/base/list_course.scss';
+@import '@/scss/views/list_course.scss';
 </style>
 
 <script>
-import Course from "@/components/Course.vue";
+import Course from "@/components/views/CourseBox.vue";
 
 export default {
   name: "ListCourse",

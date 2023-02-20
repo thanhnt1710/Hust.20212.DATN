@@ -3,6 +3,7 @@ using Hust.Datn.Service.Interfaces;
 using Hust.Datn.Service.Interfaces.Repos;
 using Hust.Datn.Service.Interfaces.Services;
 using Hust.Datn.Service.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,10 +12,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Hust.Datn.Controller
@@ -44,6 +47,25 @@ namespace Hust.Datn.Controller
                 jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
             });
 
+            services.AddAuthentication(options => {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(o =>
+            {
+                o.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey
+                    (Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])),
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true
+                };
+            });
+
             //Dependency injection
             //Service
             services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
@@ -51,12 +73,14 @@ namespace Hust.Datn.Controller
             services.AddScoped<IFileSystemService, FileSystemService>();
             services.AddScoped<IAttachmentService, AttachmentService>();
             services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<IAuthService, AuthService>();
 
             // Repo
             services.AddScoped(typeof(IBaseRepo<>), typeof(BaseRepo<>));
             services.AddScoped<ICategoryRepo, CategoryRepo>();
             services.AddScoped<IAttachmentRepo, AttachmentRepo>();
             services.AddScoped<ICourseRepo, CourseRepo>();
+            services.AddScoped<IAuthRepo, AuthRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +99,7 @@ namespace Hust.Datn.Controller
 
             app.UseCors(option => option.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseStaticFiles();

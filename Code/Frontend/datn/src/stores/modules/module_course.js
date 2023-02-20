@@ -7,23 +7,26 @@ const state = {
   courseNew: {
     CourseID: null,
     CourseName: null,
-    CategoryID: null,
-    CategoryName: null,
-    SubCategoryID: null,
-    SubCategoryName: null,
+    CourseDescription: null,
+    Category: null,
+    SubCategory: null,
     Chapters: [],
   },
 
   chapterNew: {
     ChapterID: null,
     ChapterName: null,
+    CourseID: null,
     ChapterPrevID: null,
+    Lessons: [],
   },
 
   lessonNew: {
     LessonID: null,
     LessonName: null,
-    LessonParentID: 0,
+    LessonPrevID: 0,
+    ChapterID: null,
+    CourseID: null,
     FileID: null,
     VideoID: null,
     IsMixQuestion: true,
@@ -38,8 +41,7 @@ const mutations = {
   },
 };
 
-const actions = {
-};
+const actions = {};
 
 export default {
   state,

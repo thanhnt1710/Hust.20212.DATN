@@ -13,6 +13,7 @@ export default {
   name: "BaseButton",
   components: {},
   props: {
+    // btn-primary; btn-primary-outline
     classButton: {
       type: String,
       default: "",

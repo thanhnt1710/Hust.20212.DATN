@@ -103,24 +103,31 @@ body {
   -webkit-line-clamp: 3;
 }
 
+.text-bold {
+  font-weight: bold;
+}
+
+.mr-12 {
+  margin-right: 12px;
+}
+
 /* Css cho combobox */
 .multiselect__placeholder {
-	display: none !important;
+  display: none !important;
 }
 
 .multiselect__option--selected.multiselect__option--highlight:after {
-	display: none;
+  display: none;
 }
 
 .multiselect__option--highlight:after {
-	display: none;
+  display: none;
 }
 
 .multiselect__option--selected:after {
-	display: none;
+  display: none;
 }
 
 .multiselect__strong {
-	display: none !important;
+  display: none !important;
 }
-

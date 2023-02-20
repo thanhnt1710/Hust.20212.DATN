@@ -1,8 +1,8 @@
 import Vue from "vue";
 
-import BaseInput from "@/components/BaseInput.vue";
-import BaseCombobox from "@/components/BaseCombobox.vue";
-import BaseButton from "@/components/BaseButton.vue";
+import BaseInput from "@/components/base/BaseInput.vue";
+import BaseCombobox from "@/components/base/BaseCombobox.vue";
+import BaseButton from "@/components/base/BaseButton.vue";
 
 Vue.component(BaseInput.name, BaseInput);
 Vue.component(BaseCombobox.name, BaseCombobox);
