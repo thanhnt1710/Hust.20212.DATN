@@ -46,7 +46,8 @@ namespace Hust.Datn.Service.Services
                     var countInsert = 0;
 
                     // Insert khóa học
-                    var sqlInsertCourse = @"INSERT INTO Course (CourseID, CourseName, CourseDescription, CategoryID, SubCategoryID, UserID, CreatedBy, ModifiedBy, CreatedDate, ModifiedDate)
+                    var sqlInsertCourse = @"DELETE FROM Course WHERE CourseID = @CourseID;
+                                            INSERT INTO Course (CourseID, CourseName, CourseDescription, CategoryID, SubCategoryID, UserID, CreatedBy, ModifiedBy, CreatedDate, ModifiedDate)
                                                 VALUES (@CourseID, @CourseName, @CourseDescription, @CategoryID, @SubCategoryID, @UserID, @CreatedBy, '', NOW(), NOW());";
                     sqlInsert.Append(sqlInsertCourse);
                     countInsert++;
@@ -106,18 +107,32 @@ namespace Hust.Datn.Service.Services
                     }
                     else
                     {
-                        result.Data = false;
+                        result.Success = false;
                         tran.Rollback();
                     }
                 }
                 catch (Exception e)
                 {
+                    result.Success = false;
                     result.Data = false;
                     result.DevMsg = e.Message;
                     tran.Rollback();
                 }
             }
             _dbConnection.Close();
+
+            return result;
+        }
+
+        public async Task<ServiceResult> RemoveCourse(Guid id)
+        {
+            var result = new ServiceResult();
+            var sql = @"DELETE FROM Course WHERE CourseID = @CourseID;";
+            var param = new
+            {
+                CourseID = id
+            };
+            result.Success = await _courseRepo.RemoveCourse(sql, param);
 
             return result;
         }
@@ -136,6 +151,24 @@ namespace Hust.Datn.Service.Services
             maxID = await _courseRepo.GetMaxID(sql);
             maxID.CourseID = Guid.NewGuid();
             result.Data = maxID;
+
+            return result;
+        }
+
+        public async Task<ServiceResult> GetCourseByCourseID(Guid id)
+        {
+            var result = new ServiceResult();
+
+            result.Data = await _courseRepo.GetCourseByCourseID(id);
+
+            return result;
+        }
+
+        public async Task<ServiceResult> GetCourseByUserID(Guid id)
+        {
+            var result = new ServiceResult();
+
+            result.Data = await _courseRepo.GetCourseByUserID(id);
 
             return result;
         }

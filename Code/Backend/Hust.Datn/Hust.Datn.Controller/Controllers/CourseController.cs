@@ -35,6 +35,21 @@ namespace Hust.Datn.Controller.Controllers
             }
         }
 
+        [HttpPost("remove-course/{id}")]
+        public async Task<IActionResult> RemoveCourse(Guid id)
+        {
+            try
+            {
+                var result = await _courseService.RemoveCourse(id);
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return HandleException(e);
+            }
+        }
+
         /// <summary>
         /// Lấy ID lớn nhất 
         /// </summary>
@@ -45,6 +60,42 @@ namespace Hust.Datn.Controller.Controllers
             try
             {
                 var result = await _courseService.GetMaxID();
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return HandleException(e);
+            }
+        }
+
+        /// <summary>
+        /// Lấy Khóa học theo CourseID or UserID
+        /// Type: 1-CourseID; 2-UserID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost("get-course-by-courseid/{id}")]
+        public async Task<IActionResult> GetCourseByCourseID(Guid id)
+        {
+            try
+            {
+                var result = await _courseService.GetCourseByCourseID(id);
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return HandleException(e);
+            }
+        }
+
+        [HttpPost("get-course-by-userid/{id}")]
+        public async Task<IActionResult> GetCourseByUserID(Guid id)
+        {
+            try
+            {
+                var result = await _courseService.GetCourseByUserID(id);
 
                 return Ok(result);
             }

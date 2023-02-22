@@ -3,6 +3,7 @@ SELECT
   c.CategoryID,
   c.CategoryName,
   JSON_ARRAYAGG(JSON_OBJECT('SubCategoryID', sc.SubCategoryID, 'SubCategoryName', sc.SubCategoryName, 'CategoryID', sc.CategoryID)) AS SubCategories,
+  c.ClassIcon,
   c.CreatedBy,
   c.ModifiedBy,
   c.CreatedDate,

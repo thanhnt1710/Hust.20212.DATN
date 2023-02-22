@@ -1,8 +1,13 @@
 <template>
   <div class="header flex-row-between">
     <div class="header-left flex-row-between">
-      <div class="logo"><i class="fa-brands fa-slideshare logo-icon"></i></div>
-      <div class="app-name flex">Tên của App</div>
+      <img
+        src="../assets/images/logo.svg"
+        alt=""
+        class="logo"
+        @click="dashboard"
+      />
+      <div class="app-name flex">Học hỏi và chia sẻ kiến thức</div>
     </div>
     <div class="header-mid">
       <base-input
@@ -30,11 +35,14 @@ export default {
   props: {},
   methods: {
     myCourse() {
-      this.$router.push("/main/course-detail");
+      this.$router.push("/main/my-course");
     },
     logout() {
       localStorage.removeItem("token");
       this.$router.push("/login");
+    },
+    dashboard() {
+      this.$router.push("/");
     },
   },
 };

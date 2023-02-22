@@ -1,5 +1,6 @@
 ﻿using Hust.Datn.Service.Entity;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +14,6 @@ namespace Hust.Datn.Service.Interfaces.Services
     {
         Task<ServiceResult> UploadAttachment(IFormFile attachment);
 
-        Task<Stream> ViewAttachment(string key);
+        Task<FileStreamResult> ViewAttachment(string key);
     }
 }

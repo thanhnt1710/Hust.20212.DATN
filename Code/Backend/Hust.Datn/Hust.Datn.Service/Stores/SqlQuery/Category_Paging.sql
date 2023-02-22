@@ -2,6 +2,7 @@
 SELECT
   c.CategoryID,
   c.CategoryName,
+  c.ClassIcon,
   c.CreatedBy,
   c.ModifiedBy,
   c.CreatedDate,

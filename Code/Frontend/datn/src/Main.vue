@@ -4,7 +4,8 @@
     <div class="main-data flex-row">
       <the-nav-left></the-nav-left>
       <div class="content scroll flex-column flex-1">
-        <router-view></router-view><the-footer v-show="showFooter"></the-footer>
+        <router-view></router-view>
+        <!-- <the-footer v-show="showFooter"></the-footer> -->
       </div>
     </div>
   </div>

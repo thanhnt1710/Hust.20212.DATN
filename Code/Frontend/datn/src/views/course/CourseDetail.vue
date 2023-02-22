@@ -81,15 +81,15 @@
     </div>
     <div class="cd-footer">
       <base-button
-        @click="saveCourse"
+        @click="cancel"
         textBtn="Hủy"
         classButton="mr-12"
       ></base-button>
-      <base-button
+      <!-- <base-button
         @click="saveCourse"
         textBtn="Đăng"
         classButton="btn-primary-outline mr-12"
-      ></base-button>
+      ></base-button> -->
       <base-button
         @click="saveCourse"
         textBtn="Lưu"
@@ -124,7 +124,7 @@ export default {
       courseIDMax: null,
       chapterIDMax: null,
       lessonIDMax: null,
-      course: {},
+      
     };
   },
   async created() {
@@ -133,8 +133,11 @@ export default {
   },
   computed: {
     ...mapState({
+      course(state) {
+        return state[this.moduleCourse].currentCourseDetail;
+      },
       formType(state) {
-        return state[this.moduleCourse].formTypeCourseDetail;
+        return state[this.moduleCourse].setFormTypeCourseDetail;
       },
       category(state) {
         return state[this.moduleCategory].category;
@@ -150,10 +153,12 @@ export default {
       },
     }),
   },
-  watch: {},
+  watch: {
+  },
   methods: {
     ...mapMutations({
       setLoading: "setLoading",
+      setCurrentCourseDetail: "setCurrentCourseDetail",
     }),
     ...mapActions(["saveCourse"]),
     displayFnCategory({ CategoryID, CategoryName }) {
@@ -229,7 +234,6 @@ export default {
     async saveCourse() {
       const me = this;
       let payload = me.getPayloadSaveCourse();
-      debugger;
       this.setLoading(true);
       await courseAPI
         .saveCourse(payload)
@@ -283,23 +287,31 @@ export default {
     },
 
     initCourse() {
-      this.course = {
-        CourseID: this.courseIDMax,
-        CourseName: null,
-        CourseDescription: null,
-        Category: null,
-        SubCategory: null,
-        Chapters: [
-          {
-            ChapterID: this.chapterIDMax + 1,
-            ChapterName: null,
-            CourseID: this.courseIDMax,
-            ChapterPrevID: 0,
-            Lessons: [],
-          },
-        ],
-      };
-      this.chapterIDMax++;
+      // Form thêm mới khóa học mới khởi tạo
+      if (this.$store.state[this.moduleCourse].formTypeCourseDetail == 1) {
+        let course = {
+          CourseID: this.courseIDMax,
+          CourseName: null,
+          CourseDescription: null,
+          Category: null,
+          SubCategory: null,
+          Chapters: [
+            {
+              ChapterID: this.chapterIDMax + 1,
+              ChapterName: null,
+              CourseID: this.courseIDMax,
+              ChapterPrevID: 0,
+              Lessons: [],
+            },
+          ],
+        };
+        this.chapterIDMax++;
+        this.setCurrentCourseDetail(course);
+      }
+    },
+
+    cancel() {
+      this.$router.back();
     },
   },
 };

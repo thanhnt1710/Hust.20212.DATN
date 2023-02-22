@@ -18,6 +18,12 @@ namespace Hust.Datn.Service.Entity
         public int SubCategoryID { get; set; }
         public Guid UserID { get; set; }
         [NotMapped]
+        public string AuthorName { get; set; }
+        [NotMapped]
+        public string CategoryName { get; set; }
+        [NotMapped]
+        public string SubCategoryName { get; set; }
+        [NotMapped]
         public string CreatedBy { get; set; }
         [NotMapped]
         public string ModifiedBy { get; set; }
@@ -28,6 +34,9 @@ namespace Hust.Datn.Service.Entity
 
         [NotMapped]
         public List<Chapter> Chapters { get; set; }
+
+        [NotMapped]
+        public string JsonChapters { get; set; }
     }
 
     public class MaxID

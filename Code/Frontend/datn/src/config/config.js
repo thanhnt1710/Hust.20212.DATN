@@ -1,6 +1,6 @@
 const config = {
   ListNameHiddenFooter: ["CourseDetail"],
-  extensionVideo: ["avt", "mp4", "wmv", "mkv", "vob", "flv"],
+  extensionVideo: ["mp4", "mp3"],
   extensionFile: [
     "pdf",
     "docx",
@@ -11,7 +11,6 @@ const config = {
     "gif",
     "png",
     "jpg",
-    "zip",
   ],
 };
 export default config;

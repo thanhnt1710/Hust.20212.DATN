@@ -15,3 +15,5 @@ E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\obj\Debug\net5.0\r
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\obj\Debug\net5.0\Hust.Datn.Infrastructure.pdb
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\Stores\SqlQuery\Category_Paging.sql
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\Stores\SqlQuery\Category_GetAllCategory.sql
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\Stores\SqlQuery\Course_GetByUserID.sql
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\Stores\SqlQuery\Course_GetByCourseID.sql

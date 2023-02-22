@@ -1,7 +1,7 @@
 <template>
   <div class="list-course">
     <div class="title">{{ titleList }}</div>
-    <div class="content">
+    <div class="content-course">
       <div v-for="course in courses" :key="course.ID" class="content-item">
         <course :course="course"></course>
       </div>

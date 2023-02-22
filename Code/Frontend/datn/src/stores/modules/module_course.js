@@ -2,8 +2,6 @@ import Vue from "vue";
 import courseAPI from "@/apis/views/courseAPI";
 
 const state = {
-  // Trạng thái form chi tiết khóa học
-  formTypeCourseDetail: null,
   courseNew: {
     CourseID: null,
     CourseName: null,
@@ -31,13 +29,23 @@ const state = {
     VideoID: null,
     IsMixQuestion: true,
   },
+  //Loại form chi tiết khóa học: 1-thêm mới; 2-sửa
+  formTypeCourseDetail: 1,
+  currentCourseLearn: {},
+  currentCourseDetail: {},
 };
 
 const getters = {};
 
 const mutations = {
-  setFormTypeCD(state, type) {
+  setFormTypeCourseDetail(state, type) {
     state.formTypeCourseDetail = type;
+  },
+  setCurrentCourseLearn(state, course) {
+    state.currentCourseLearn = course;
+  },
+  setCurrentCourseDetail(state, course) {
+    state.currentCourseDetail = course;
   },
 };
 

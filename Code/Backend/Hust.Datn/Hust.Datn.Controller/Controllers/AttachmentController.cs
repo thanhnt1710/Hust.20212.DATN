@@ -41,13 +41,14 @@ namespace Hust.Datn.Controller.Controllers
         }
 
         [HttpGet("view/{fileKey}")]
-        public async Task<FileStreamResult> ViewAttachment(string fileKey)
+        [AllowAnonymous]
+        public async Task<IActionResult> ViewAttachment(string fileKey)
         {
             try
             {
-                Stream result = await _attachmentService.ViewAttachment(fileKey);
+                var result = await _attachmentService.ViewAttachment(fileKey);
 
-                return File();
+                return result;
             }
             catch (Exception e)
             {

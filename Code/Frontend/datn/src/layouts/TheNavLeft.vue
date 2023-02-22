@@ -15,8 +15,8 @@
         :key="item.CategoryID"
       >
         <i
-          class="fa-solid fa-music icon"
-          :class="item.ClassLogoUI"
+          class="icon"
+          :class="item.ClassIcon"
           :title="item.CategoryName"
         ></i>
         <div class="text">{{ item.CategoryName }}</div>

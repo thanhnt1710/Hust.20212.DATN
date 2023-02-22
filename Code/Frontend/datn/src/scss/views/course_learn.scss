@@ -1,2 +1,32 @@
+
+@import "@/scss/base/variables.scss";
+
 .course-learn {
+  height: 100vh;
+  .cl-header {
+    background-color: #29303b;
+    height: 50px;
+    position: relative;
+    z-index: 1;
+    .logo {
+    }
+    .course-name {
+        color: $white-color;
+    }
+  }
+  .cl-main {
+    .cl-left {
+        flex: 3;
+        .cl-left-video {
+          width: 100%;
+        }
+        .cl-left-file {
+          width: 100%;
+        }
+    }
+    .cl-right {
+        flex: 1;
+        background-color: blue;
+    }
+  }
 }

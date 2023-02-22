@@ -7,9 +7,10 @@
     font-size: 24px;
     margin: 20px 0 14px 14px;
   }
-  .content {
+  .content-course {
     display: grid;
     grid-template-columns: auto auto auto auto;
+    background: linear-gradient(to bottom, #6828fa45, #ffbaa454);
     .content-item {
       margin: 0 12px;
     }
