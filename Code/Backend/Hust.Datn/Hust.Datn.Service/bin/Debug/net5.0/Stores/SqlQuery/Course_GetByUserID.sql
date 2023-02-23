@@ -15,30 +15,46 @@ CREATE TEMPORARY TABLE tempChapter AS (SELECT
   GROUP BY c.ChapterID);
 
 SELECT
-  c.CourseID,
-  c.CourseName,
-  c.CourseDescription,
-  c.CategoryID,
-  c.SubCategoryID,
-  sc.SubCategoryName,
-  c.UserID,
-  u.FullName AS AuthorName,
-  ca.CategoryName,
-  c.CreatedBy,
-  c.ModifiedBy,
-  c.CreatedDate,
-  c.ModifiedDate,
-  JSON_ARRAYAGG(JSON_OBJECT('ChapterID', tc.ChapterID, 'ChapterName',
-  tc.ChapterName, 'CourseID', tc.CourseID, 'ChapterPrevID',
-  tc.ChapterPrevID, 'Lessons', tc.Lessons)) AS JsonChapters
-FROM Course c
-  LEFT JOIN tempChapter tc
-    ON c.CourseID = tc.CourseID
-  INNER JOIN User u
-    ON c.UserID = u.UserID
-  INNER JOIN Category ca
-    ON c.CategoryID = ca.CategoryID
-  INNER JOIN SubCategory sc
-    ON c.SubCategoryID = sc.SubCategoryID
-WHERE c.UserID = @ID
-GROUP BY c.CourseID;
+  a.*,
+  b.JsonQuestions
+FROM (SELECT
+    c.CourseID,
+    c.CourseName,
+    c.CourseDescription,
+    c.CategoryID,
+    c.SubCategoryID,
+    sc.SubCategoryName,
+    c.UserID,
+    u.FullName AS AuthorName,
+    ca.CategoryName,
+    c.CreatedBy,
+    c.ModifiedBy,
+    c.CreatedDate,
+    c.ModifiedDate,
+    JSON_ARRAYAGG(JSON_OBJECT('ChapterID', tc.ChapterID, 'ChapterName',
+    tc.ChapterName, 'CourseID', tc.CourseID, 'ChapterPrevID',
+    tc.ChapterPrevID, 'Lessons', tc.Lessons)) AS JsonChapters
+  FROM Course c
+    LEFT JOIN tempChapter tc
+      ON c.CourseID = tc.CourseID
+    INNER JOIN User u
+      ON c.UserID = u.UserID
+    INNER JOIN Category ca
+      ON c.CategoryID = ca.CategoryID
+    INNER JOIN SubCategory sc
+      ON c.SubCategoryID = sc.SubCategoryID
+  WHERE c.UserID = @ID
+  GROUP BY c.CourseID) AS a
+  INNER JOIN (SELECT
+      c.CourseID,
+      IF(q.QuestionID, JSON_ARRAYAGG(JSON_OBJECT('QuestionID', q.QuestionID,
+      'QuestionStr', q.QuestionStr, 'CourseID', q.CourseID,
+      'Answers', q.Answers, 'QuestionResult', q.QuestionResult)), NULL) AS JsonQuestions
+    FROM Course c
+      INNER JOIN User u
+        ON c.UserID = u.UserID
+      LEFT JOIN Question q
+        ON c.CourseID = q.CourseID
+    WHERE c.UserID = @ID
+    GROUP BY c.CourseID) AS b
+    ON a.CourseID = b.CourseID

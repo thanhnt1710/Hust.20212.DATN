@@ -9,6 +9,7 @@ const state = {
     Category: null,
     SubCategory: null,
     Chapters: [],
+    Questions: []
   },
 
   chapterNew: {

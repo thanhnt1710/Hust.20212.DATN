@@ -10,6 +10,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Hust.Datn.Service.Services
@@ -45,13 +46,15 @@ namespace Hust.Datn.Service.Services
                     var paramInsert = new Dictionary<string, object>();
                     var countInsert = 0;
 
+                    // Xóa trước khi insert
+                    paramInsert.Add("CourseID", course.CourseID);
+                    await cnn.ExecuteAsync("DELETE FROM Course WHERE CourseID = @CourseID;", paramInsert, tran);
+
                     // Insert khóa học
-                    var sqlInsertCourse = @"DELETE FROM Course WHERE CourseID = @CourseID;
-                                            INSERT INTO Course (CourseID, CourseName, CourseDescription, CategoryID, SubCategoryID, UserID, CreatedBy, ModifiedBy, CreatedDate, ModifiedDate)
+                    var sqlInsertCourse = @"INSERT INTO Course (CourseID, CourseName, CourseDescription, CategoryID, SubCategoryID, UserID, CreatedBy, ModifiedBy, CreatedDate, ModifiedDate)
                                                 VALUES (@CourseID, @CourseName, @CourseDescription, @CategoryID, @SubCategoryID, @UserID, @CreatedBy, '', NOW(), NOW());";
                     sqlInsert.Append(sqlInsertCourse);
                     countInsert++;
-                    paramInsert.Add("CourseID", course.CourseID);
                     paramInsert.Add("CourseName", course.CourseName);
                     paramInsert.Add("CourseDescription", course.CourseDescription);
                     paramInsert.Add("CategoryID", course.CategoryID);
@@ -96,6 +99,24 @@ namespace Hust.Datn.Service.Services
                                     paramInsert.Add($"L_IsMixQuestion_{i}_{k}", lesson.IsMixQuestion);
                                 }
                             }
+                        }
+                    }
+
+                    // Insert bài kiểm tra
+                    if(course.Questions != null)
+                    {
+                        for (int i = 0; i < course.Questions.Count; i++)
+                        {
+                            var question = course.Questions[i];
+                            var sqlInsertQuestion = $@"INSERT INTO Question (QuestionID, QuestionStr, CourseID, Type, Answers, QuestionResult)
+                                                        VALUES (@Q_QuestionID_{i}, @Q_QuestionStr_{i}, @Q_CourseID_{i}, 1, @Q_Answers_{i}, @Q_QuestionResult_{i});";
+                            sqlInsert.Append(sqlInsertQuestion);
+                            countInsert++;
+                            paramInsert.Add($"Q_QuestionID_{i}", question.QuestionID);
+                            paramInsert.Add($"Q_QuestionStr_{i}", question.QuestionStr);
+                            paramInsert.Add($"Q_CourseID_{i}", question.CourseID);
+                            paramInsert.Add($"Q_Answers_{i}", JsonSerializer.Serialize(question.Answers));
+                            paramInsert.Add($"Q_QuestionResult_{ i}", question.QuestionResult);
                         }
                     }
 

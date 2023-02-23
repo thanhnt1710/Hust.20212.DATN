@@ -18,7 +18,7 @@ namespace Hust.Datn.Service.Entity
         public Guid CourseID { get; set; }
         public string FileID { get; set; }
         public string VideoID { get; set; }
-        public bool IsMixQuestion { get; set; }
+        public int IsMixQuestion { get; set; }
         [NotMapped]
         public string CreatedBy { get; set; }
         [NotMapped]

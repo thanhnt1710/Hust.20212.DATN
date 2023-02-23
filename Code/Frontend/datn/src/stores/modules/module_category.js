@@ -37,7 +37,6 @@ const actions = {
       .getAllCategory()
       .then((res) => {
         commit("setCategory", res.data.Data);
-        Vue.$toast.success("Oke!");
       })
       .catch((err) => {
         console.log(err);

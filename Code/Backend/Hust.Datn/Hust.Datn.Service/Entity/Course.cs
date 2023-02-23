@@ -37,6 +37,12 @@ namespace Hust.Datn.Service.Entity
 
         [NotMapped]
         public string JsonChapters { get; set; }
+
+        [NotMapped]
+        public List<Question> Questions { get; set; }
+
+        [NotMapped]
+        public string JsonQuestions { get; set; }
     }
 
     public class MaxID

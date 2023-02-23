@@ -79,6 +79,23 @@
         <base-button textBtn="Thêm chương" @click="addChapter"></base-button>
       </div>
     </div>
+    <div class="cd-test">
+      <div class="test-title">Bài kiểm tra khóa học</div>
+      <div class="test-content">
+        <question
+          v-for="(question, index) in course.Questions"
+          :key="question.QuestionID"
+          v-model="course.Questions[index]"
+        >
+        </question>
+        <div class="add-question">
+          <base-button
+            textBtn="Thêm câu hỏi"
+            @click="addQuestion"
+          ></base-button>
+        </div>
+      </div>
+    </div>
     <div class="cd-footer">
       <base-button
         @click="cancel"
@@ -108,27 +125,32 @@
 import Vue from "vue";
 import { mapState, mapMutations, mapActions } from "vuex";
 import Chapter from "@/components/views/Chapter.vue";
+import Question from "@/components/views/Question.vue";
 import courseAPI from "@/apis/views/courseAPI.js";
+import questionAPI from "@/apis/views/questionAPI.js";
 
 export default {
   name: "CourseDetail",
   components: {
     Chapter,
+    Question,
   },
   props: {},
   data() {
     return {
       moduleCategory: "module_category",
       moduleCourse: "module_course",
+      moduleQuestion: "module_question",
       dataCategory: null,
-      courseIDMax: null,
-      chapterIDMax: null,
-      lessonIDMax: null,
-      
+      courseIDMax: 0,
+      chapterIDMax: 0,
+      lessonIDMax: 0,
+      questionIDMax: 0,
     };
   },
   async created() {
     await this.getMaxID();
+    await this.getMaxIDQuestion();
     this.initCourse();
   },
   computed: {
@@ -151,9 +173,10 @@ export default {
       lessonNew(state) {
         return state[this.moduleCourse].lessonNew;
       },
+      questionNew(state) {
+        return state[this.moduleQuestion].questionNew;
+      },
     }),
-  },
-  watch: {
   },
   methods: {
     ...mapMutations({
@@ -206,6 +229,15 @@ export default {
         chapter.Lessons = [lessonNew];
       }
       this.lessonIDMax++;
+    },
+
+    addQuestion() {
+      const me = this;
+      let newQuestion = JSON.parse(JSON.stringify(this.questionNew));
+      newQuestion.QuestionID = this.questionIDMax + 1;
+      newQuestion.CourseID = this.courseIDMax;
+      this.course.Questions.push(newQuestion);
+      this.questionIDMax++;
     },
 
     removeLesson(chapter) {
@@ -286,6 +318,24 @@ export default {
         });
     },
 
+    async getMaxIDQuestion() {
+      const me = this;
+      this.setLoading(true);
+      await questionAPI
+        .getMaxID()
+        .then((res) => {
+          if (res && res.data && res.data.Data) {
+            this.questionIDMax = res.data.Data;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          this.setLoading(false);
+        });
+    },
+
     initCourse() {
       // Form thêm mới khóa học mới khởi tạo
       if (this.$store.state[this.moduleCourse].formTypeCourseDetail == 1) {
@@ -304,6 +354,7 @@ export default {
               Lessons: [],
             },
           ],
+          Questions: [],
         };
         this.chapterIDMax++;
         this.setCurrentCourseDetail(course);

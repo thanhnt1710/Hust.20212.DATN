@@ -1,4 +1,3 @@
-
 @import "@/scss/base/variables.scss";
 
 .course-learn {
@@ -11,22 +10,105 @@
     .logo {
     }
     .course-name {
-        color: $white-color;
+      color: $white-color;
     }
   }
   .cl-main {
     .cl-left {
-        flex: 3;
+      flex: 3;
+      .cl-left-tab {
+        height: 50px;
+        .tab {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          border-bottom: 4px solid;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 18px;
+        }
+        .tab-active {
+          border-bottom: 4px solid blue;
+          background-color: blue;
+          color: white;
+        }
+        .tab-video {
+          border-right: 1px solid;
+        }
+        .tab-file {
+        }
+      }
+      .cl-left-content {
+        // background-color: $black-color;
+        overflow: auto;
         .cl-left-video {
-          width: 100%;
+          width: 1000px;
+          margin: 20px auto;
         }
         .cl-left-file {
-          width: 100%;
+          width: 1000px;
+          height: 100%;
+          position: relative;
+          margin: auto;
+          top: 20px;
         }
+      }
     }
     .cl-right {
-        flex: 1;
-        background-color: blue;
+      flex: 1;
+      overflow: auto;
+      .cl-right-title {
+        height: 50px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        font-family: "Montserrat-Medium";
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .cl-right-content {
+        border-left: 1px solid #e7e7e7;
+        .cl-item-chapter {
+          background-color: #f7f8fa;
+          border-bottom: 1px solid #dedfe0;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          padding: 8px 20px;
+          font-weight: bold;
+          font-size: 18px;
+          .cl-item-chapter-name {
+            line-height: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .cl-item-lesson {
+            display: flex;
+            flex-direction: row;
+            padding: 14px 0 14px 16px;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+            background-color: #ffffff;
+            font-weight: normal;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 4px;
+            line-height: 19px;
+            &:hover {
+              background-color: #f1f1f1;
+              cursor: pointer;
+            }
+          }
+          .cl-item-lesson-active {
+            background-color: rgba(240, 81, 35, 0.2);
+          }
+        }
+      }
     }
   }
 }
