@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,5 +22,11 @@ namespace Hust.Datn.Service.Entity
     {
         public string Question { get; set; }
         public int Answer { get; set; }
+    }
+
+    public class ResultTest
+    {
+        public int QuestionID { get; set; }
+        public bool CorrectAnswer { get; set; }
     }
 }

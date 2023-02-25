@@ -28,27 +28,8 @@ namespace Hust.Datn.Infrastructure.Repository
             return await _dbConnection.QueryFirstAsync<MaxID>(sql);
         }
 
-        public async Task<Course> GetCourseByCourseID(Guid id)
+        public async Task<List<Course>> GetListCourse(string sql, ParamGetCourse param)
         {
-            var sql = await _fileSystemService.GetFileString(FileType.SqlQuery, "Course_GetByCourseID.sql");
-            var param = new Dictionary<string, object>
-            {
-                { "ID", id }
-            };
-
-            var courseEnumable = await _dbConnection.QueryAsync<Course>(sql, param);
-
-            return courseEnumable.ToArray().FirstOrDefault();
-        }
-
-        public async Task<List<Course>> GetCourseByUserID(Guid id)
-        {
-            var sql = await _fileSystemService.GetFileString(FileType.SqlQuery, "Course_GetByUserID.sql");
-            var param = new Dictionary<string, object>
-            {
-                { "ID", id }
-            };
-
             var courseEnumable = await _dbConnection.QueryAsync<Course>(sql, param);
 
             return courseEnumable.ToList();

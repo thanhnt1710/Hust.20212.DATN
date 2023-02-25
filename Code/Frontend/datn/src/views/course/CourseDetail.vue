@@ -62,6 +62,7 @@
         </div>
       </div>
     </div>
+    <div class="line-center"></div>
     <div class="cd-content">
       <div class="title">Nội dung khóa học</div>
       <div class="main-content">
@@ -74,11 +75,16 @@
           @removeChapter="removeChapter(chapter, index)"
         >
         </chapter>
-      </div>
-      <div class="add-chapter">
-        <base-button textBtn="Thêm chương" @click="addChapter"></base-button>
+        <div class="add-chapter">
+          <base-button
+            classButton="btn-primary"
+            textBtn="Thêm chương"
+            @click="addChapter"
+          ></base-button>
+        </div>
       </div>
     </div>
+    <div class="line-center"></div>
     <div class="cd-test">
       <div class="test-title">Bài kiểm tra khóa học</div>
       <div class="test-content">
@@ -86,10 +92,12 @@
           v-for="(question, index) in course.Questions"
           :key="question.QuestionID"
           v-model="course.Questions[index]"
+          @removeQuestion="removeQuestion(question, index)"
         >
         </question>
         <div class="add-question">
           <base-button
+            classButton="btn-primary"
             textBtn="Thêm câu hỏi"
             @click="addQuestion"
           ></base-button>
@@ -195,7 +203,7 @@ export default {
     addChapter(e) {
       let chapterNew = { ...this.chapterNew };
       chapterNew.ChapterID = this.chapterIDMax + 1;
-      chapterNew.CourseID = this.courseIDMax;
+      chapterNew.CourseID = this.course.CourseID;
       if (
         this.course.Chapters &&
         Array.isArray(this.course.Chapters) &&
@@ -214,7 +222,7 @@ export default {
     addLesson(chapter) {
       let lessonNew = { ...this.lessonNew };
       lessonNew.LessonID = this.lessonIDMax + 1;
-      lessonNew.CourseID = this.courseIDMax;
+      lessonNew.CourseID = this.course.CourseID;
       lessonNew.ChapterID = chapter.ChapterID;
       if (
         chapter.Lessons &&
@@ -235,7 +243,7 @@ export default {
       const me = this;
       let newQuestion = JSON.parse(JSON.stringify(this.questionNew));
       newQuestion.QuestionID = this.questionIDMax + 1;
-      newQuestion.CourseID = this.courseIDMax;
+      newQuestion.CourseID = this.course.CourseID;
       this.course.Questions.push(newQuestion);
       this.questionIDMax++;
     },
@@ -263,6 +271,11 @@ export default {
       }
     },
 
+    removeQuestion(question, index) {
+      let course = this.course;
+      course.Questions.splice(index, 1);
+    },
+
     async saveCourse() {
       const me = this;
       let payload = me.getPayloadSaveCourse();
@@ -271,7 +284,7 @@ export default {
         .saveCourse(payload)
         .then((res) => {
           if (res && res.data && res.data.Success) {
-            Vue.$toast.success("Thêm mới khóa học thành công.");
+            Vue.$toast.success("Lưu khóa học thành công.");
           } else {
             Vue.$toast.error("Có lỗi xảy ra vui lòng thử lại sau!");
           }

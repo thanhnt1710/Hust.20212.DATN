@@ -26,6 +26,13 @@ namespace Hust.Datn.Infrastructure.Repository
         {
             return await _dbConnection.QueryFirstAsync<int>(sql);
         }
+
+        public async Task<List<ResultTest>> ScroingTest(string sql, object param)
+        {
+            var testEnumable = await _dbConnection.QueryAsync<ResultTest>(sql, param);
+
+            return testEnumable.ToList();
+        }
         #endregion
 
     }

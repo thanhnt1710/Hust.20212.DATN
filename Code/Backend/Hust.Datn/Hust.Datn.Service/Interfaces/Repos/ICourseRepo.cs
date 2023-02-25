@@ -10,8 +10,7 @@ namespace Hust.Datn.Service.Interfaces.Repos
     public interface ICourseRepo : IBaseRepo<Course>
     {
         Task<MaxID> GetMaxID(string sql);
-        Task<Course> GetCourseByCourseID(Guid courseID);
-        Task<List<Course>> GetCourseByUserID(Guid courseID);
         Task<bool> RemoveCourse(string sql, object param);
+        Task<List<Course>> GetListCourse(string sql, ParamGetCourse param);
     }
 }

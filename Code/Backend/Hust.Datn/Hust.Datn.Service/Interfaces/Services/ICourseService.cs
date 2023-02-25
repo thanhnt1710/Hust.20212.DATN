@@ -11,8 +11,7 @@ namespace Hust.Datn.Service.Interfaces.Services
     {
         Task<ServiceResult> SaveCourse(Course course);
         Task<ServiceResult> GetMaxID();
-        Task<ServiceResult> GetCourseByCourseID(Guid id);
-        Task<ServiceResult> GetCourseByUserID(Guid id);
         Task<ServiceResult> RemoveCourse(Guid id);
+        Task<ServiceResult> GetListCourse(ParamGetCourse param);
     }
 }

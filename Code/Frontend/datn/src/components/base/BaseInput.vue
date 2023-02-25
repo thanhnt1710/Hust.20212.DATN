@@ -13,10 +13,11 @@
       class="input"
       :maxlength="maxlength"
       :placeholder="placeholder"
+      :readonly="readonly"
       @focus="$emit('focusInput')"
       @blur="$emit('blurInput')"
       @input="$emit('input')"
-      @keyup.enter="$emit('enterInput')"
+      @keyup.enter="$emit('enterInput', internalValue)"
     />
     <div
       v-if="iconRight"
@@ -63,6 +64,10 @@ export default {
       type: String,
       default: "text",
     },
+    readonly: {
+      type: Boolean,
+      default: false,
+    }
   },
   data() {
     return {

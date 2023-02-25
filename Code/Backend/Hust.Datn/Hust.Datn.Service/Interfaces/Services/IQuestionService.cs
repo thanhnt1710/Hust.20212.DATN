@@ -10,5 +10,6 @@ namespace Hust.Datn.Service.Interfaces.Services
     public interface IQuestionService : IBaseService<Question>
     {
         Task<ServiceResult> GetMaxID();
+        Task<ServiceResult> ScroingTest(List<Question> questions);
     }
 }

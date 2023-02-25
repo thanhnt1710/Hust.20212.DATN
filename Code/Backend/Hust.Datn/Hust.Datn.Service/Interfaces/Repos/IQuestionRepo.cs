@@ -10,5 +10,6 @@ namespace Hust.Datn.Service.Interfaces.Repos
     public interface IQuestionRepo : IBaseRepo<Question>
     {
         Task<int> GetMaxID(string sql);
+        Task<List<ResultTest>> ScroingTest(string sql, object param);
     }
 }

@@ -20,7 +20,11 @@
       @removeLesson="removeLesson(lesson, index)"
     ></lesson>
     <div class="add-lesson">
-      <base-button textBtn="Thêm bài giảng" @click="addLesson"></base-button>
+      <base-button
+        classButton="btn-primary"
+        textBtn="Thêm bài giảng"
+        @click="addLesson"
+      ></base-button>
     </div>
   </div>
 </template>

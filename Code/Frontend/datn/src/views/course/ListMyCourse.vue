@@ -32,6 +32,7 @@ import Vue from "vue";
 import { mapState, mapMutations, mapActions } from "vuex";
 import CourseBox from "@/components/views/CourseBox.vue";
 import courseAPI from "@/apis/views/courseAPI";
+import commonFn from "@/commons/commonFunction.js";
 
 export default {
   name: "ListMyCorse",
@@ -44,8 +45,19 @@ export default {
   data() {
     return {
       module: "module_course",
-      courses: [],
     };
+  },
+  computed: {
+    ...mapState({
+      paramGetCourse(state) {
+        return state[this.module]
+          ? state[this.module].paramGetCourse
+          : {};
+      },
+      courses(state) {
+        return state[this.module] ? state[this.module].courses : [];
+      },
+    }),
   },
   methods: {
     ...mapMutations({
@@ -53,6 +65,7 @@ export default {
       setFormTypeCourseDetail: "setFormTypeCourseDetail",
       setCurrentCourseLearn: "setCurrentCourseLearn",
       setCurrentCourseDetail: "setCurrentCourseDetail",
+      setCourses: "setCourses",
     }),
 
     async getMyCourse() {
@@ -64,11 +77,14 @@ export default {
       }
       if (userID) {
         this.setLoading(true);
+        let payload = this.paramGetCourse;
+        payload.UserID = userID;
+
         await courseAPI
-          .getCourseByUserId(userID)
+          .getListCourse(payload)
           .then((res) => {
             if (res && res.data && res.data.Success) {
-              me.convertCourse(res.data.Data);
+              this.setCourses(commonFn.convertCourse(res.data.Data));
             } else {
               Vue.$toast.error("Lấy danh sách khóa học không thành công!");
             }
@@ -81,34 +97,6 @@ export default {
             this.setLoading(false);
           });
       }
-    },
-
-    convertCourse(courses) {
-      if (courses && Array.isArray(courses)) {
-        courses.map((course) => {
-          // Chương
-          if (course.JsonChapters) {
-            course.Chapters = JSON.parse(course.JsonChapters);
-          } else {
-            course.Chapters = [];
-          }
-
-          // Bài kiểm tra
-          if (course.JsonQuestions) {
-            let questions = JSON.parse(course.JsonQuestions);
-            if (questions && Array.isArray(questions)) {
-              questions.map((q) => {
-                q.Answers = JSON.parse(q.Answers);
-              });
-            }
-            course.Questions = questions;
-          } else {
-            course.Questions = [];
-          }
-        });
-      }
-
-      this.courses = courses;
     },
 
     clickCourse(course) {

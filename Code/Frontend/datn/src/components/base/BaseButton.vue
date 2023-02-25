@@ -1,6 +1,6 @@
 <template>
   <div class="base-button" :class="classButton">
-    <button type="button" @click="clickBtn">{{ textBtn }}</button>
+    <button class="button" type="button" @click="clickBtn">{{ textBtn }}</button>
   </div>
 </template>
 

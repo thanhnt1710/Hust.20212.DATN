@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Hust.Datn.Service.Const;
 using Hust.Datn.Service.Entity;
 using Hust.Datn.Service.Interfaces;
 using Hust.Datn.Service.Interfaces.Repos;
@@ -85,8 +86,8 @@ namespace Hust.Datn.Service.Services
                                 {
                                     var lesson = chapter.Lessons[k];
 
-                                    var sqlInsertLesson = $@"INSERT INTO Lesson (LessonID, LessonName, LessonPrevID, ChapterID, CourseID, FileID, VideoID, IsMixQuestion, CreatedBy, ModifiedBy, CreatedDate, ModifiedDate)
-                                                                VALUES (@L_LessonID_{i}_{k}, @L_LessonName_{i}_{k}, @L_LessonPrevID_{i}_{k}, @L_ChapterID_{i}_{k}, @L_CourseID_{i}_{k}, @L_FileID_{i}_{k}, @L_VideoID_{i}_{k}, @L_IsMixQuestion_{i}_{k}, '', '', NOW(), NOW());";
+                                    var sqlInsertLesson = $@"INSERT INTO Lesson (LessonID, LessonName, LessonPrevID, ChapterID, CourseID, FileID, FileName, VideoID, VideoName, CreatedBy, ModifiedBy, CreatedDate, ModifiedDate)
+                                                                VALUES (@L_LessonID_{i}_{k}, @L_LessonName_{i}_{k}, @L_LessonPrevID_{i}_{k}, @L_ChapterID_{i}_{k}, @L_CourseID_{i}_{k}, @L_FileID_{i}_{k}, @L_FileName_{i}_{k}, @L_VideoID_{i}_{k}, @L_VideoName_{i}_{k}, '', '', NOW(), NOW());";
                                     sqlInsert.Append(sqlInsertLesson);
                                     countInsert++;
                                     paramInsert.Add($"L_LessonID_{i}_{k}", lesson.LessonID);
@@ -95,8 +96,9 @@ namespace Hust.Datn.Service.Services
                                     paramInsert.Add($"L_ChapterID_{i}_{k}", lesson.ChapterID);
                                     paramInsert.Add($"L_CourseID_{i}_{k}", lesson.CourseID);
                                     paramInsert.Add($"L_FileID_{i}_{k}", lesson.FileID);
+                                    paramInsert.Add($"L_FileName_{i}_{k}", lesson.FileName);
                                     paramInsert.Add($"L_VideoID_{i}_{k}", lesson.VideoID);
-                                    paramInsert.Add($"L_IsMixQuestion_{i}_{k}", lesson.IsMixQuestion);
+                                    paramInsert.Add($"L_VideoName_{i}_{k}", lesson.VideoName);
                                 }
                             }
                         }
@@ -176,20 +178,12 @@ namespace Hust.Datn.Service.Services
             return result;
         }
 
-        public async Task<ServiceResult> GetCourseByCourseID(Guid id)
+        public async Task<ServiceResult> GetListCourse(ParamGetCourse paramGetCourse)
         {
             var result = new ServiceResult();
 
-            result.Data = await _courseRepo.GetCourseByCourseID(id);
-
-            return result;
-        }
-
-        public async Task<ServiceResult> GetCourseByUserID(Guid id)
-        {
-            var result = new ServiceResult();
-
-            result.Data = await _courseRepo.GetCourseByUserID(id);
+            var sql = await _fileSystemService.GetFileString(FileType.SqlQuery, "Course_GetListCourse.sql");
+            result.Data = await _courseRepo.GetListCourse(sql, paramGetCourse);
 
             return result;
         }

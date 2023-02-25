@@ -20,3 +20,5 @@ E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Service\bin\Debug\net5.0\Stores\S
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Service\bin\Debug\net5.0\Stores\SqlQuery\Category_GetAllCategory.sql
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Service\bin\Debug\net5.0\Stores\SqlQuery\Course_GetByUserID.sql
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Service\bin\Debug\net5.0\Stores\SqlQuery\Course_GetByCourseID.sql
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Service\bin\Debug\net5.0\Stores\SqlQuery\Question_ScroingTest.sql
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Service\bin\Debug\net5.0\Stores\SqlQuery\Course_GetListCourse.sql

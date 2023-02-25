@@ -9,6 +9,10 @@ class QuestionAPI extends BaseAPI {
   getMaxID() {
     return this.getAxios(`${this.controller}/max-id`);
   }
+
+  scroingTest(payload) {
+    return this.postAxios(`${this.controller}/scroing-test`, payload);
+  }
 }
 
 export default new QuestionAPI();

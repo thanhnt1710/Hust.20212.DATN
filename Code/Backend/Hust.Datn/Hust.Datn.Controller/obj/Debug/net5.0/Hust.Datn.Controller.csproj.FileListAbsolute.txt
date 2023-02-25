@@ -48,3 +48,5 @@ E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Micro
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Stores\SqlQuery\Course_GetByUserID.sql
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Stores\SqlQuery\Course_GetByCourseID.sql
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Stores\SqlQuery\Question_ScroingTest.sql
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Stores\SqlQuery\Course_GetListCourse.sql

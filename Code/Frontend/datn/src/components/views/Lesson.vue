@@ -15,15 +15,37 @@
     </div>
     <div class="lesson-content">
       <div class="content-video">
-        <div class="label-video">Video</div>
-        <div class="data-video">
-          <input type="file" ref="video" @change="uploadVideo" />
+        <!-- <div class="label-video">Video</div> -->
+        <div class="data-video flex-center">
+          <base-button
+            textBtn="Chọn Video"
+            classButton="btn-primary-outline video-btn"
+            @click="clickUploadVideo"
+          ></base-button>
+          <div class="video-name">{{ internalLesson.VideoName }}</div>
+          <input
+            type="file"
+            ref="video"
+            style="display: none"
+            @change="uploadVideo"
+          />
         </div>
       </div>
       <div class="content-file">
-        <div class="label-file">File</div>
-        <div class="data-file">
-          <input type="file" ref="file" @change="uploadFile" />
+        <!-- <div class="label-file">File</div> -->
+        <div class="data-file flex-center">
+          <base-button
+            textBtn="Chọn File"
+            classButton="btn-primary-outline file-btn"
+            @click="clickUploadFile"
+          ></base-button>
+          <div class="file-name">{{ internalLesson.FileName }}</div>
+          <input
+            type="file"
+            ref="file"
+            style="display: none"
+            @change="uploadFile"
+          />
         </div>
       </div>
     </div>
@@ -32,6 +54,9 @@
 
 <style lang="scss" scoped>
 @import "@/scss/views/chapter_lesson.scss";
+::v-deep .file-btn .button {
+  width: 120px;
+}
 </style>
 
 <script>
@@ -71,11 +96,20 @@ export default {
     removeLesson() {
       this.$emit("removeLesson");
     },
+
+    clickUploadVideo() {
+      this.$refs.video.click();
+    },
+
+    clickUploadFile() {
+      this.$refs.file.click();
+    },
+
     async uploadVideo(e) {
       const me = this;
       let video = me.$refs.video.files[0];
       let extension = video.name.split(".").pop();
-      if (!me.$app.config.extensionVideo.includes(extension)) {
+      if (!me.$app.config.ExtensionVideo.includes(extension)) {
         me.$refs.video.value = "";
         Vue.$toast.error("Định dạng video không hợp lệ!");
       } else {
@@ -85,6 +119,7 @@ export default {
           .then((res) => {
             if (res && res.data && res.data.Data) {
               me.internalLesson.VideoID = res.data.Data;
+              me.internalLesson.VideoName = video.name;
             }
           })
           .catch((err) => {
@@ -97,7 +132,7 @@ export default {
       const me = this;
       let file = me.$refs.file.files[0];
       let extension = file.name.split(".").pop();
-      if (!me.$app.config.extensionFile.includes(extension)) {
+      if (!me.$app.config.ExtensionFile.includes(extension)) {
         me.$refs.file.value = "";
         Vue.$toast.error("Định dạng file không hợp lệ!");
       } else {
@@ -107,6 +142,7 @@ export default {
           .then((res) => {
             if (res && res.data && res.data.Data) {
               me.internalLesson.FileID = res.data.Data;
+              me.internalLesson.FileName = file.name;
             }
           })
           .catch((err) => {

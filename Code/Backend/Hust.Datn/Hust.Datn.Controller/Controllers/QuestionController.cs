@@ -36,6 +36,21 @@ namespace Hust.Datn.Controller.Controllers
                 return HandleException(e);
             }
         }
+
+        [HttpPost("scroing-test")]
+        public async Task<IActionResult> ScroingTest(List<Question> questions)
+        {
+            try
+            {
+                var result = await _questionService.ScroingTest(questions);
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return HandleException(e);
+            }
+        }
         #endregion
     }
 }

@@ -51,4 +51,11 @@ namespace Hust.Datn.Service.Entity
         public int ChapterID { get; set; }
         public int LessonID { get; set; }
     }
+
+    public class ParamGetCourse
+    {
+        public int? CategoryID { get; set; }
+        public  string InputFilter { get; set; }
+        public Guid? UserID { get; set; }
+    }
 }

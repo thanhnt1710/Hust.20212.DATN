@@ -7,17 +7,17 @@
   background-color: $white-color;
   .input {
     width: 100%;
+    font-family: 'Montserrat-Regular';
     font-size: 14px;
     color: #212121;
     outline: none;
     border: none;
-    margin: 0 10px 0 4px;
+    margin: 0 10px 0 10px;
+    &::placeholder {
+      font-family: 'Montserrat-Light';
+    }
   }
 
-  &::placeholder {
-    font-family: 'Montserrat-Light';
-    font-size: 13px;
-  }
 
   &:focus-within {
     border: 1px solid $focus-color;

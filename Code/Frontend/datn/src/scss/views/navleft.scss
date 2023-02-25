@@ -9,7 +9,8 @@
   transition: all 0.1s ease;
   .title {
     height: 50px;
-    padding: 0 10px 0 4px;
+    padding: 0 10px 0 10px;
+    justify-content: center;
     i {
       width: 26px;
       color: #f3f4f6;
@@ -38,19 +39,26 @@
         cursor: pointer;
       }
       .icon {
+        flex: 1;
         margin: 0 10px 0 4px;
         font-size: 22px;
         color: pink;
       }
       .text {
+        flex: 6;
         font-size: 14px;
         color: #c8c8c8;
         padding-right: 10px;
         line-height: 17px;
       }
     }
-    .active {
+    .detail-item-active {
       border-left: 4px solid #0dd469;
+      background-color: #404f64;
+      &:hover {
+        background-color: #404f64;
+        cursor: pointer;
+      }
       .icon {
         color: #0dd469;
       }
@@ -65,5 +73,5 @@
 }
 
 .navbar-left-hide {
-  width: 40px;
+  width: 36px;
 }

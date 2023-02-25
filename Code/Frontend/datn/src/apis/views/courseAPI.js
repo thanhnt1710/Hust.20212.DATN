@@ -18,12 +18,8 @@ class CourseAPI extends BaseAPI {
     return this.getAxios(`${this.controller}/max-id`);
   }
 
-  getCourseById(id) {
-    return this.postAxios(`${this.controller}/get-course-by-courseid/${id}`);
-  }
-
-  getCourseByUserId(id) {
-    return this.postAxios(`${this.controller}/get-course-by-userid/${id}`);
+  getListCourse(payload) {
+    return this.postAxios(`${this.controller}/get-list-course`, payload);
   }
 }
 

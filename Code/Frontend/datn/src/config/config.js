@@ -1,7 +1,8 @@
 const config = {
   ListNameHiddenFooter: ["CourseDetail"],
-  extensionVideo: ["mp4", "mp3"],
-  extensionFile: [
+  ScreenNameLoadMyCourse: ["ListMyCourse"],
+  ExtensionVideo: ["mp4", "mp3"],
+  ExtensionFile: [
     "pdf",
     "jpeg",
     "gif",

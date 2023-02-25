@@ -7,7 +7,7 @@ CREATE TEMPORARY TABLE tempChapter AS (SELECT
     c.ChapterPrevID,
     JSON_ARRAYAGG(JSON_OBJECT('LessonID', l.LessonID, 'LessonName', l.LessonName,
     'LessonPrevID', l.LessonPrevID, 'ChapterID', l.ChapterID, 'CourseID', l.CourseID,
-    'FileID', l.FileID, 'VideoID', l.VideoID, 'IsMixQuestion', l.IsMixQuestion
+    'FileID', l.FileID, 'FileName', l.FileName, 'VideoID', l.VideoID, 'VideoName', l.VideoName
     )) AS Lessons
   FROM Chapter c
     LEFT JOIN Lesson l

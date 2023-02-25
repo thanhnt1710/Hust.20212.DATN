@@ -11,6 +11,13 @@ const enums = {
     FormType: {
         Add: 1,
         Edit: 2
+    },
+
+    // Loại hiển thị giao diện màn học chi tiết khóa học
+    ScreenLearnType: {
+        Video: 1, // Học video
+        File: 2, // học file
+        Test: 3 // làm bài kiểm tra
     }
 };
 

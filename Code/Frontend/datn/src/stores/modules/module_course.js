@@ -9,7 +9,7 @@ const state = {
     Category: null,
     SubCategory: null,
     Chapters: [],
-    Questions: []
+    Questions: [],
   },
 
   chapterNew: {
@@ -28,12 +28,21 @@ const state = {
     CourseID: null,
     FileID: null,
     VideoID: null,
-    IsMixQuestion: true,
+    FileName: "",
+    VideoName: "",
   },
   //Loại form chi tiết khóa học: 1-thêm mới; 2-sửa
   formTypeCourseDetail: 1,
   currentCourseLearn: {},
   currentCourseDetail: {},
+
+  paramGetCourse: {
+    CategoryID: null,
+    InputFilter: null,
+    UserID: null,
+  },
+  // Danh sách khóa học
+  courses: [],
 };
 
 const getters = {};
@@ -47,6 +56,12 @@ const mutations = {
   },
   setCurrentCourseDetail(state, course) {
     state.currentCourseDetail = course;
+  },
+  setParamGetCourse(state, value) {
+    state.paramGetCourse = value;
+  },
+  setCourses(state, courses) {
+    state.courses = courses;
   },
 };
 

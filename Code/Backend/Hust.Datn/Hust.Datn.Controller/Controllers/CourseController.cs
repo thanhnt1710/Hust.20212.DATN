@@ -70,32 +70,15 @@ namespace Hust.Datn.Controller.Controllers
         }
 
         /// <summary>
-        /// Lấy Khóa học theo CourseID or UserID
-        /// Type: 1-CourseID; 2-UserID
+        /// Lấy danh sách khóa học theo filter
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost("get-course-by-courseid/{id}")]
-        public async Task<IActionResult> GetCourseByCourseID(Guid id)
+        [HttpPost("get-list-course")]
+        public async Task<IActionResult> GetListCourse(ParamGetCourse param)
         {
             try
             {
-                var result = await _courseService.GetCourseByCourseID(id);
-
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return HandleException(e);
-            }
-        }
-
-        [HttpPost("get-course-by-userid/{id}")]
-        public async Task<IActionResult> GetCourseByUserID(Guid id)
-        {
-            try
-            {
-                var result = await _courseService.GetCourseByUserID(id);
+                var result = await _courseService.GetListCourse(param);
 
                 return Ok(result);
             }
