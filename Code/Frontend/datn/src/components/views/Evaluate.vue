@@ -4,7 +4,7 @@
     :class="{ 'hide-evaluate': !showEvaluate }"
   >
     <div class="evaluate-header flex-row-between">
-      <div class="title line-break-1">
+      <div class="title line-break-1" :title="infoCourse.CourseName">
         {{ "Đánh giá khóa học: " + infoCourse.CourseName }}
       </div>
       <i class="fas fa-times icon-close" title="Đóng" @click="hideEvaluate"></i>
@@ -106,31 +106,34 @@ export default {
     },
     async insertEvaluate() {
       const me = this;
-      let payload = {
-        CourseID: me.infoCourse.CourseID,
-        UserID: JSON.parse(localStorage.getItem("context")).UserID,
-        EvaluateContent: me.$refs.evaluateContent.value,
-      };
+      let evaluateContent = me.$refs.evaluateContent.value;
+      if (evaluateContent) {
+        let payload = {
+          CourseID: me.infoCourse.CourseID,
+          UserID: JSON.parse(localStorage.getItem("context")).UserID,
+          EvaluateContent: evaluateContent,
+        };
 
-      me.setLoading(true);
-      await evaluateAPI
-        .insertEvaluate(payload)
-        .then((res) => {
-          if (res && res.data && res.data.Success) {
-            this.$refs.evaluateContent.value = null;
-            Vue.$toast.success("Thêm đánh giá khoá học thành công!");
-            me.getEvaluates();
-          } else {
+        me.setLoading(true);
+        await evaluateAPI
+          .insertEvaluate(payload)
+          .then((res) => {
+            if (res && res.data && res.data.Success) {
+              me.$refs.evaluateContent.value = null;
+              Vue.$toast.success("Thêm đánh giá khoá học thành công!");
+              me.getEvaluates();
+            } else {
+              Vue.$toast.error("Thêm đánh giá khoá học không thành công!");
+            }
+          })
+          .catch((err) => {
+            console.error(err);
             Vue.$toast.error("Thêm đánh giá khoá học không thành công!");
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-          Vue.$toast.error("Thêm đánh giá khoá học không thành công!");
-        })
-        .finally(() => {
-          me.setLoading(false);
-        });
+          })
+          .finally(() => {
+            me.setLoading(false);
+          });
+      }
     },
   },
 };

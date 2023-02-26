@@ -101,7 +101,7 @@ namespace Hust.Datn.Controller
 
             app.UseRouting();
 
-            app.UseCors(option => option.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
+            app.UseCors(option => option.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseAuthentication();
             app.UseAuthorization();

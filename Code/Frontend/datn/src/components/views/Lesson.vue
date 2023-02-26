@@ -61,6 +61,7 @@
 
 <script>
 import Vue from "vue";
+import { mapState, mapMutations, mapActions } from "vuex";
 import AttachmentAPI from "@/apis/views/attachmentAPI.js";
 import axios from "axios";
 
@@ -93,6 +94,9 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({
+      setLoading: "setLoading",
+    }),
     removeLesson() {
       this.$emit("removeLesson");
     },
@@ -115,6 +119,7 @@ export default {
       } else {
         let attachment = new FormData();
         attachment.append("file", video);
+        this.setLoading(true);
         await AttachmentAPI.uploadAttachment(attachment)
           .then((res) => {
             if (res && res.data && res.data.Data) {
@@ -125,6 +130,9 @@ export default {
           .catch((err) => {
             Vue.$toast.error("Có lỗi xảy ra vui lòng thử lại sau!");
             console.log(err);
+          })
+          .finally(() => {
+            this.setLoading(false);
           });
       }
     },
@@ -138,6 +146,7 @@ export default {
       } else {
         let attachment = new FormData();
         attachment.append("file", file);
+        this.setLoading(true);
         await AttachmentAPI.uploadAttachment(attachment)
           .then((res) => {
             if (res && res.data && res.data.Data) {
@@ -148,6 +157,9 @@ export default {
           .catch((err) => {
             Vue.$toast.error("Có lỗi xảy ra vui lòng thử lại sau!");
             console.log(err);
+          })
+          .finally(() => {
+            this.setLoading(false);
           });
       }
     },

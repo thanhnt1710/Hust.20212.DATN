@@ -85,7 +85,14 @@
         </div>
       </div>
       <div class="cl-right scroll">
-        <div class="cl-right-title">Nội dung khóa học</div>
+        <div class="cl-right-title flex-row-between">
+          <p>Nội dung khóa học</p>
+          <i
+            class="fas fa-comment-dots icon-evaluate"
+            title="Đánh giá khóa học"
+            @click="evaluateCourse"
+          ></i>
+        </div>
         <div class="cl-right-content">
           <div
             v-for="chapter in course.Chapters"
@@ -99,7 +106,7 @@
               v-for="lesson in chapter.Lessons"
               :key="lesson.LessonID"
               class="cl-item-lesson"
-              :class="{'cl-item-lesson-active': lesson.isActive}"
+              :class="{ 'cl-item-lesson-active': lesson.isActive }"
               :title="lesson.LessonName"
               @click="learnLesson(lesson)"
             >
@@ -116,6 +123,7 @@
         </div>
       </div>
     </div>
+    <evaluate :showEvaluate="showEvaluate"></evaluate>
   </div>
 </template>
 
@@ -128,12 +136,14 @@ import Vue from "vue";
 import { mapState, mapMutations, mapActions } from "vuex";
 import APIConfig from "@/apis/base/apiConfig.js";
 import Question from "@/components/views/Question.vue";
+import Evaluate from "@/components/views/Evaluate.vue";
 import questionAPI from "@/apis/views/questionAPI.js";
 
 export default {
   name: "CourseLearn",
   components: {
     Question,
+    Evaluate,
   },
   created() {},
 
@@ -143,6 +153,7 @@ export default {
     return {
       screenType: me.$app.enums.ScreenLearnType.Video, // 1-video, 2-file, 3-test
       moduleCourse: "module_course",
+      moduleEvaluate: "module_evaluate",
       srcVideo: null,
       srcFile: null,
     };
@@ -152,11 +163,16 @@ export default {
       course(state) {
         return state[this.moduleCourse].currentCourseLearn;
       },
+      showEvaluate(state) {
+        return state[this.moduleEvaluate].showEvaluate;
+      },
     }),
   },
   methods: {
     ...mapMutations({
       setLoading: "setLoading",
+      setShowEvaluate: "setShowEvaluate",
+      setInfoCourse: "setInfoCourse",
     }),
     learnLesson(lesson) {
       const me = this;
@@ -171,12 +187,12 @@ export default {
       lesson.isActive = true;
 
       me.screenType = me.$app.enums.ScreenLearnType.Video;
-      if (lesson.VideoID) {
-        this.srcVideo = `${APIConfig}Attachment/view/${lesson.VideoID}`;
-      }
-      if (lesson.FileID) {
-        this.srcFile = `${APIConfig}Attachment/view/${lesson.FileID}`;
-      }
+      this.srcVideo = lesson.VideoID
+        ? `${APIConfig}Attachment/view/${lesson.VideoID}`
+        : `${APIConfig}Attachment/view`;
+      this.srcFile = lesson.FileID
+        ? `${APIConfig}Attachment/view/${lesson.FileID}`
+        : `${APIConfig}Attachment/view`;
     },
 
     async scroingTest() {
@@ -210,6 +226,17 @@ export default {
           me.$refs[refName][0].setCorrectAnswer(item.CorrectAnswer);
         });
       }
+    },
+
+    evaluateCourse() {
+      // Cập nhật thông tin khóa học lấy đánh giá
+      this.setInfoCourse({
+        CourseID: this.course.CourseID,
+        CourseName: this.course.CourseName,
+      });
+
+      // Mở form xem đánh giá
+      this.setShowEvaluate(true);
     },
   },
 };

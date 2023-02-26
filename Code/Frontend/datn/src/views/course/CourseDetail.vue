@@ -285,6 +285,7 @@ export default {
         .saveCourse(payload)
         .then((res) => {
           if (res && res.data && res.data.Success) {
+            me.$router.back();
             Vue.$toast.success("Lưu khóa học thành công.");
           } else {
             Vue.$toast.error("Có lỗi xảy ra vui lòng thử lại sau!");

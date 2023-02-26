@@ -81,6 +81,7 @@ namespace Hust.Datn.Service.Services
                 byte[] fileByte = await File.ReadAllBytesAsync(filePath);
                 Stream fileStream = new MemoryStream(fileByte);
                 result = new FileStreamResult(fileStream, GetContentType(extension));
+                result.EnableRangeProcessing = true;
             }
 
             return result;

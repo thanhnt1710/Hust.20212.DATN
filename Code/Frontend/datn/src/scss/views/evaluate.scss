@@ -11,7 +11,7 @@
   width: 700px;
   height: 100%;
   background-color: white;
-  transition: all 0.2s eaappse;
+  transition: all 0.2s ease;
   overflow: auto;
   .evaluate-header {
     position: sticky;
@@ -65,7 +65,7 @@
   .evaluate-other {
     margin: 20px;
     .evaluate-item {
-        margin-bottom: 20px;
+      margin-bottom: 20px;
       .avatar {
         width: 34px;
         height: 34px;
@@ -74,8 +74,8 @@
       .evaluate-content-wrap {
         margin-left: 12px;
         .evaluate-content {
-            padding: 14px;
-    border-radius: 12px;
+          padding: 14px;
+          border-radius: 12px;
           background-color: #f2f3f5;
           .user-name {
             font-weight: bold;
@@ -96,9 +96,9 @@
           }
         }
         .evaluate-time {
-            color: #999;
-            justify-content: end;
-            margin: 4px 10px 0 0 ;
+          color: #999;
+          justify-content: end;
+          margin: 4px 10px 0 0;
         }
       }
     }

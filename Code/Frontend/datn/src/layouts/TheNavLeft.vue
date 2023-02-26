@@ -52,7 +52,7 @@ export default {
   computed: {
     ...mapState({
       category(state) {
-        let category = state[this.module].category;
+        let category = JSON.parse(JSON.stringify(state[this.module].category));
         if (category && category[0] && category[0].CategoryID != null) {
           category.unshift({
             ClassIcon: "fas fa-globe-asia",

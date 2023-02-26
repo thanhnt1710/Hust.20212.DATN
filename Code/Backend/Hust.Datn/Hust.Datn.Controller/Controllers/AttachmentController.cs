@@ -42,7 +42,7 @@ namespace Hust.Datn.Controller.Controllers
 
         [HttpGet("view/{fileKey}")]
         [AllowAnonymous]
-        public async Task<IActionResult> ViewAttachment(string fileKey)
+        public async Task<FileStreamResult> ViewAttachment(string fileKey)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace Hust.Datn.Controller.Controllers
             }
             catch (Exception e)
             {
-                return HandleException(e);
+                return (FileStreamResult)HandleException(e);
             }
         }
         #endregion
