@@ -1,0 +1,106 @@
+@import "@/scss/base/variables.scss";
+
+.hide-evaluate {
+  width: 0 !important;
+}
+
+.evaluate {
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  width: 700px;
+  height: 100%;
+  background-color: white;
+  transition: all 0.2s eaappse;
+  overflow: auto;
+  .evaluate-header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-right: 20px;
+      line-height: 20px;
+    }
+    .icon-close {
+      font-size: 22px;
+      cursor: pointer;
+    }
+  }
+  .evaluate-input-wrap {
+    margin: 20px;
+    .evaluate-input {
+      margin-bottom: 10px;
+      .avatar {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+      }
+      textarea {
+        width: 100%;
+        font-family: "Montserrat-Regular";
+        font-size: 14px;
+        color: #212121;
+        border: 1px solid #e8e8e8;
+        border-radius: 6px;
+        background-color: #ffffff;
+        outline: none;
+        padding: 10px 16px;
+        margin-left: 12px;
+        &::placeholder {
+          font-family: "Montserrat-Light";
+        }
+        &:focus-within {
+          border: 1px solid $focus-color;
+        }
+      }
+    }
+    .evaluate-btn {
+      justify-content: end;
+    }
+  }
+  .evaluate-other {
+    margin: 20px;
+    .evaluate-item {
+        margin-bottom: 20px;
+      .avatar {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+      }
+      .evaluate-content-wrap {
+        margin-left: 12px;
+        .evaluate-content {
+            padding: 14px;
+    border-radius: 12px;
+          background-color: #f2f3f5;
+          .user-name {
+            font-weight: bold;
+            margin-bottom: 8px;
+          }
+          .evaluate-text {
+            outline: none;
+            cursor: default;
+            width: 100%;
+            font-family: "Montserrat-Regular";
+            font-size: 14px;
+            color: #212121;
+            border: none;
+            border-radius: 6px;
+            background-color: #ffffff;
+            outline: none;
+            background-color: #f2f3f5;
+          }
+        }
+        .evaluate-time {
+            color: #999;
+            justify-content: end;
+            margin: 4px 10px 0 0 ;
+        }
+      }
+    }
+  }
+}

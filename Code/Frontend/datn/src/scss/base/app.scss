@@ -87,6 +87,14 @@ body {
   flex: 1;
 }
 
+.line-break-1 {
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
 .line-break-2 {
   display: -webkit-box;
   text-overflow: ellipsis;

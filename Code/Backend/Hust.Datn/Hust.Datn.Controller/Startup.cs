@@ -75,6 +75,7 @@ namespace Hust.Datn.Controller
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IQuestionService, QuestionService>();
+            services.AddScoped<IEvaluateService, EvaluateService>();
 
             // Repo
             services.AddScoped(typeof(IBaseRepo<>), typeof(BaseRepo<>));
@@ -83,6 +84,7 @@ namespace Hust.Datn.Controller
             services.AddScoped<ICourseRepo, CourseRepo>();
             services.AddScoped<IAuthRepo, AuthRepo>();
             services.AddScoped<IQuestionRepo, QuestionRepo>();
+            services.AddScoped<IEvaluateRepo, EvaluateRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -23,6 +23,7 @@
               rows="4"
               cols="50"
               maxLength="1000"
+              class="scroll"
               placeholder="Nhập mô tả khóa học"
             ></textarea>
           </div>

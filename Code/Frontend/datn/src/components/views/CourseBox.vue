@@ -1,20 +1,27 @@
 <template>
   <div class="course-box flex-column" @click="clickCourse">
-    <div v-if="editable" class="course-function">
+    <div class="course-function">
       <i
         class="fas fa-eye icon-fn icon-fn-view"
         title="Xem"
         @click="viewCourse"
       ></i>
       <i
+        v-if="editable"
         class="fas fa-tools icon-fn icon-fn-edit"
         title="Sửa"
         @click="editCourse"
       ></i>
       <i
+        v-if="editable"
         class="fas fa-trash-alt icon-fn icon-fn-remove"
         title="Xóa"
         @click="removeCourse"
+      ></i>
+      <i
+        class="fas fa-comment-dots icon-fn icon-fn-evaluate"
+        title="Đánh giá"
+        @click="evaluateCourse"
       ></i>
     </div>
     <div class="course-img">
@@ -72,6 +79,8 @@ export default {
       setFormTypeCourseDetail: "setFormTypeCourseDetail",
       setCurrentCourseLearn: "setCurrentCourseLearn",
       setCurrentCourseDetail: "setCurrentCourseDetail",
+      setShowEvaluate: "setShowEvaluate",
+      setInfoCourse: "setInfoCourse",
     }),
     clickCourse() {
       this.$emit("clickCourse", this.course);
@@ -93,7 +102,17 @@ export default {
       this.$router.push("/main/course-detail");
     },
     removeCourse() {
-      this.$emit('removeCourse');
+      this.$emit("removeCourse");
+    },
+    evaluateCourse() {
+      // Cập nhật thông tin khóa học lấy đánh giá
+      this.setInfoCourse({
+        CourseID: this.course.CourseID,
+        CourseName: this.course.CourseName,
+      });
+
+      // Mở form xem đánh giá
+      this.setShowEvaluate(true);
     },
   },
 };

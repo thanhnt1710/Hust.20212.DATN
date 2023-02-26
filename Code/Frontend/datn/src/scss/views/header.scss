@@ -61,6 +61,7 @@
       }
       .logout {
         display: none;
+        z-index: 10;
         position: absolute;
         right: -24px;
         background-color: white;
