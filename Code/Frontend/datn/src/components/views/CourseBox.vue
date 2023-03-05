@@ -3,8 +3,8 @@
     <div class="course-function">
       <i
         class="fas fa-eye icon-fn icon-fn-view"
-        title="Xem"
-        @click="viewCourse"
+        title="Học"
+        @click="learnCourse"
       ></i>
       <i
         v-if="editable"
@@ -44,6 +44,7 @@
 
 <script>
 import { mapState, mapMutations, mapActions } from "vuex";
+import userAPI from "@/apis/views/userAPI.js";
 
 export default {
   name: "CourseBox",
@@ -72,6 +73,9 @@ export default {
         return state[this.moduleCategory].subCategory;
       },
     }),
+    context() {
+      return JSON.parse(localStorage.getItem("context"));
+    },
   },
   methods: {
     ...mapMutations({
@@ -85,9 +89,14 @@ export default {
     clickCourse() {
       this.$emit("clickCourse", this.course);
     },
-    viewCourse() {
+    learnCourse() {
       this.setCurrentCourseLearn(this.course);
       this.$router.push("/course-learn");
+      let param = {
+        CourseID: this.course.CourseID,
+        UserID: this.context.UserID,
+      };
+      userAPI.setIslearnUser(param);
     },
     editCourse() {
       // Thêm dữ liệu category cho course

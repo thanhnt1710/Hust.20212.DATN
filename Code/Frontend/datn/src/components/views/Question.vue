@@ -106,6 +106,7 @@
   border-radius: 4px;
   padding: 10px;
   margin-bottom: 18px;
+  background-color: white;
   .question-string {
     .remove-question {
       cursor: pointer;
@@ -139,12 +140,12 @@ export default {
     readonly: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   data() {
     return {
       internalQuestion: this.value,
-      correctAnswer: null
+      correctAnswer: null,
     };
   },
   watch: {
@@ -173,7 +174,7 @@ export default {
     },
     setCorrectAnswer(value) {
       this.correctAnswer = value;
-    }
+    },
   },
 };
 </script>

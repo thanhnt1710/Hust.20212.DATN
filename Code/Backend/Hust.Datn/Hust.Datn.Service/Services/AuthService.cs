@@ -49,6 +49,7 @@ namespace Hust.Datn.Service.Services
                         UserID = user.UserID,
                         UserName = userName,
                         FullName = user.FullName,
+                        IsAdmin = user.Role == 3,
                         Token = token
                     };
                 }
@@ -82,11 +83,12 @@ namespace Hust.Datn.Service.Services
             if (existUserName)
             {
                 // Thêm user
-                var sqlInsert = @"INSERT INTO User (UserID, FullName, Role, UserName, Password, CreatedBy, ModifiedBy, CreatedDate, ModifiedDate)
-                                    VALUES (UUID(), @FullName, 4, @UserName, @Password, '', '', NOW(), NOW());";
+                var sqlInsert = @"INSERT INTO User (UserID, FullName, Role, IsLearn, UserName, Password, CreatedBy, ModifiedBy, CreatedDate, ModifiedDate)
+                                    VALUES (UUID(), @FullName, 4, @IsLearn, @UserName, @Password, '', '', NOW(), NOW());";
                 var param = new
                 {
                     FullName = user.FullName,
+                    IsLearn = user.IsLearn,
                     UserName = user.UserName,
                     Password = Encrypt(user.Password)
                 };
@@ -104,6 +106,29 @@ namespace Hust.Datn.Service.Services
                 result.Success = false;
                 result.UserMsg = "Tên đăng nhập đã tồn tại trên hệ thống!";
             }
+
+            return result;
+        }
+
+        public async Task<ServiceResult> SetIsLearnUser(Course course)
+        {
+            var result = new ServiceResult();
+            var sql = @"UPDATE User u
+                        SET u.IsLearn = 1
+                        WHERE NOT EXISTS (SELECT
+                            c.CourseID
+                          FROM Course c
+                          WHERE c.CourseID = @CourseID
+                          AND c.UserID = @UserID)
+                        AND u.UserID = @UserID;";
+            var param = new
+            {
+                CourseID = course.CourseID,
+                UserID = course.UserID
+
+            };
+
+            await _authRepo.SetIsLearnUser(sql, param);
 
             return result;
         }

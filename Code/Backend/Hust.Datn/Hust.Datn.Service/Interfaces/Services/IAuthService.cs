@@ -11,5 +11,6 @@ namespace Hust.Datn.Service.Interfaces.Services
     {
         Task<ServiceResult> Login(string userName, string password);
         Task<ServiceResult> Register(User user);
+        Task<ServiceResult> SetIsLearnUser(Course course);
     }
 }

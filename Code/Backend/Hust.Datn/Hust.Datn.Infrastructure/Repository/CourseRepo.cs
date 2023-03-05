@@ -40,6 +40,11 @@ namespace Hust.Datn.Infrastructure.Repository
             var effectRow = await _dbConnection.ExecuteAsync(sql, param);
             return effectRow > 0 ? true : false;
         }
+
+        public async Task<Statistic> GetDataStatistic(string sql)
+        {
+            return await _dbConnection.QueryFirstAsync<Statistic>(sql);
+        }
         #endregion
 
     }

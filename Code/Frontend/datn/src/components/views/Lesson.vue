@@ -5,7 +5,7 @@
         v-model="internalLesson.LessonName"
         maxLength="255"
         classInput="lesson-name-input"
-        placeholder="Nhập tên bài"
+        placeholder="Nhập tên bài giảng"
       ></base-input>
       <i
         title="Xóa bài"

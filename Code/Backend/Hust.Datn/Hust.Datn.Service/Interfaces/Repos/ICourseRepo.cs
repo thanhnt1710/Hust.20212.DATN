@@ -12,5 +12,6 @@ namespace Hust.Datn.Service.Interfaces.Repos
         Task<MaxID> GetMaxID(string sql);
         Task<bool> RemoveCourse(string sql, object param);
         Task<List<Course>> GetListCourse(string sql, ParamGetCourse param);
+        Task<Statistic> GetDataStatistic(string sql);
     }
 }

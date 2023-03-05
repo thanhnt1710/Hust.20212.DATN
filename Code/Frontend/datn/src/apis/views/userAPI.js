@@ -13,6 +13,10 @@ class UserAPI extends BaseAPI {
   register(payload) {
     return this.postAxios(`${this.controller}/register`, payload);
   }
+
+  setIslearnUser(payload) {
+    return this.postAxios(`${this.controller}/set-islearn-user`, payload);
+  }
 }
 
 export default new UserAPI();

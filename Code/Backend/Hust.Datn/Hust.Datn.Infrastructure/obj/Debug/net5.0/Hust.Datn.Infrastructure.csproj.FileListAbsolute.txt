@@ -19,3 +19,4 @@ E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\S
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\Stores\SqlQuery\Course_GetByCourseID.sql
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\Stores\SqlQuery\Question_ScroingTest.sql
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\Stores\SqlQuery\Course_GetListCourse.sql
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Infrastructure\bin\Debug\net5.0\Stores\SqlQuery\Statistic_GetData.sql

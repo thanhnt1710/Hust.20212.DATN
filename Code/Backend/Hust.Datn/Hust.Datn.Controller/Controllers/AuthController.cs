@@ -56,6 +56,21 @@ namespace Hust.Datn.Controller.Controllers
                 return HandleException(e);
             }
         }
+
+        [HttpPost("set-islearn-user")]
+        public async Task<IActionResult> SetIsLearnUser(Course course)
+        {
+            try
+            {
+                var result = await _authService.SetIsLearnUser(course);
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return HandleException(e);
+            }
+        }
         #endregion
     }
 }

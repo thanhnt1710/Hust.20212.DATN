@@ -13,5 +13,6 @@ namespace Hust.Datn.Service.Interfaces.Services
         Task<ServiceResult> GetMaxID();
         Task<ServiceResult> RemoveCourse(Guid id);
         Task<ServiceResult> GetListCourse(ParamGetCourse param);
+        Task<ServiceResult> GetDataStatistic();
     }
 }

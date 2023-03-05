@@ -7,7 +7,7 @@
         class="logo"
         @click="dashboard"
       />
-      <div class="app-name flex">Học hỏi và chia sẻ kiến thức</div>
+      <div class="app-name flex">Chia sẻ và học hỏi kiến thức</div>
     </div>
     <div class="header-mid">
       <base-input
@@ -18,6 +18,7 @@
       ></base-input>
     </div>
     <div class="header-right flex-row-between">
+      <div v-if="isAdmin" class="btn-fn statistic" @click="statistic">Thống kê</div>
       <div class="btn-fn dashboard" @click="dashboard">Trang chủ</div>
       <div class="btn-fn my-course" @click="myCourse">Khóa học của tôi</div>
       <div class="avatar">
@@ -54,6 +55,9 @@ export default {
     context() {
       return JSON.parse(localStorage.getItem("context"));
     },
+    isAdmin() {
+      return this.context.IsAdmin;
+    }
   },
   methods: {
     ...mapMutations({
@@ -106,6 +110,9 @@ export default {
           this.setLoading(false);
         });
     },
+    statistic() {
+      this.$router.push("/main/statistic");
+    }
   },
 };
 </script>

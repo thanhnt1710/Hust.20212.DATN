@@ -50,3 +50,4 @@ E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Store
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Stores\SqlQuery\Course_GetByCourseID.sql
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Stores\SqlQuery\Question_ScroingTest.sql
 E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Stores\SqlQuery\Course_GetListCourse.sql
+E:\Hust.20221\Code\Backend\Hust.Datn\Hust.Datn.Controller\bin\Debug\net5.0\Stores\SqlQuery\Statistic_GetData.sql

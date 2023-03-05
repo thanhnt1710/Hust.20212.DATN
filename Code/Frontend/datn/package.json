@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "axios": "^1.2.0",
+    "chart.js": "^4.2.1",
     "core-js": "^3.8.3",
     "v-tooltip": "^2.1.3",
     "vue": "^2.6.14",
     "vue-axios": "^3.5.2",
+    "vue-chartjs": "^5.2.0",
     "vue-drag-resize": "^1.5.4",
     "vue-multiselect": "^2.1.7",
     "vue-router": "^3.5.1",

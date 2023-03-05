@@ -63,6 +63,11 @@ namespace Hust.Datn.Infrastructure.Repository
                 return true;
             }
         }
+
+        public async Task<int> SetIsLearnUser(string sql, object param)
+        {
+            return await _dbConnection.ExecuteAsync(sql, param);
+        }
         #endregion
     }
 }

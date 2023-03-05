@@ -87,6 +87,24 @@ namespace Hust.Datn.Controller.Controllers
                 return HandleException(e);
             }
         }
+
+        /// <summary>
+        /// Lấy dữ liệu thống kê
+        /// </summary>
+        [HttpPost("get-data-statistic")]
+        public async Task<IActionResult> GetDataStatistic()
+        {
+            try
+            {
+                var result = await _courseService.GetDataStatistic();
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return HandleException(e);
+            }
+        }
         #endregion
     }
 }

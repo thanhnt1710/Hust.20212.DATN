@@ -14,6 +14,7 @@ namespace Hust.Datn.Service.Entity
         public int Role { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public bool IsLearn { get; set; } = false;
         [NotMapped]
         public string CreatedBy { get; set; }
         [NotMapped]

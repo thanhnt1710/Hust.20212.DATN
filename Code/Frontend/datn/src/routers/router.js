@@ -39,6 +39,11 @@ const routes = [
         component: () => import("@/views/dashboard/Dashboard.vue"),
       },
       {
+        path: "statistic",
+        name: "Statistic",
+        component: () => import("@/views/dashboard/Statistic.vue"),
+      },
+      {
         path: "course-detail",
         name: "CourseDetail",
         component: () => import("@/views/course/CourseDetail.vue"),
@@ -50,7 +55,7 @@ const routes = [
       },
     ],
   },
-  
+
   {
     path: "/course-learn",
     name: "CourseLearn",

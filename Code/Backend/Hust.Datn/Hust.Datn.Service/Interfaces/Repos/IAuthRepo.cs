@@ -14,5 +14,7 @@ namespace Hust.Datn.Service.Interfaces.Repos
         Task<int> InsertUser(string sql, object param);
 
         Task<bool> CheckUserName(string sql, object param);
+
+        Task<int> SetIsLearnUser(string sql, object param);
     }
 }

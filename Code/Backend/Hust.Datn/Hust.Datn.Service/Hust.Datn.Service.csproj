@@ -18,8 +18,12 @@
     <None Remove="Stores\SqlQuery\Course_GetByUserID.sql" />
     <None Remove="Stores\SqlQuery\Course_GetListCourse.sql" />
     <None Remove="Stores\SqlQuery\Question_ScroingTest.sql" />
+    <None Remove="Stores\SqlQuery\Statistic_GetData.sql" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Stores\SqlQuery\Statistic_GetData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Stores\SqlQuery\Course_GetListCourse.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

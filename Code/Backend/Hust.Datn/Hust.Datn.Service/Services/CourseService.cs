@@ -187,6 +187,16 @@ namespace Hust.Datn.Service.Services
 
             return result;
         }
+
+        public async Task<ServiceResult> GetDataStatistic()
+        {
+            var result = new ServiceResult();
+
+            var sql = await _fileSystemService.GetFileString(FileType.SqlQuery, "Statistic_GetData.sql");
+            result.Data = await _courseRepo.GetDataStatistic(sql);
+
+            return result;
+        }
         #endregion
     }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="course-detail">
-    <div class="cd-title flex-column-between">Thêm khóa học</div>
+    <div class="cd-title flex-column-between">Chi tiết khóa học</div>
     <div class="cd-infor">
       <div class="title text-bold">Thông tin khóa học</div>
       <div class="detail">
@@ -279,25 +279,101 @@ export default {
 
     async saveCourse() {
       const me = this;
-      let payload = me.getPayloadSaveCourse();
-      this.setLoading(true);
-      await courseAPI
-        .saveCourse(payload)
-        .then((res) => {
-          if (res && res.data && res.data.Success) {
-            me.$router.back();
-            Vue.$toast.success("Lưu khóa học thành công.");
-          } else {
+      let valid = me.validateCourse();
+      if (valid) {
+        let payload = me.getPayloadSaveCourse();
+        this.setLoading(true);
+        await courseAPI
+          .saveCourse(payload)
+          .then((res) => {
+            if (res && res.data && res.data.Success) {
+              me.$router.back();
+              Vue.$toast.success("Lưu khóa học thành công.");
+            } else {
+              Vue.$toast.error("Có lỗi xảy ra vui lòng thử lại sau!");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
             Vue.$toast.error("Có lỗi xảy ra vui lòng thử lại sau!");
+          })
+          .finally(() => {
+            this.setLoading(false);
+          });
+      }
+    },
+
+    validateCourse() {
+      const me = this;
+      let course = this.course;
+      let valid = true;
+      let errorNoti = "";
+
+      if (!course.CourseName) {
+        errorNoti += "Tên khóa học không được để trống!&nbsp;&nbsp;";
+        valid = false;
+      }
+
+      if (!course.Category || !course.Category.CategoryID) {
+        errorNoti += "Danh mục khóa học không được để trống!&nbsp;&nbsp;";
+        valid = false;
+      }
+
+      if (course.Chapters && Array.isArray(course.Chapters)) {
+        for (let i = 0; i < course.Chapters.length; i++) {
+          let chapter = course.Chapters[i];
+          if (!chapter.ChapterName) {
+            errorNoti += "Tên chương không được để trống!&nbsp;&nbsp;";
+            valid = false;
+            break;
           }
-        })
-        .catch((err) => {
-          console.log(err);
-          Vue.$toast.error("Có lỗi xảy ra vui lòng thử lại sau!");
-        })
-        .finally(() => {
-          this.setLoading(false);
-        });
+          let lessons = chapter.Lessons;
+          let errorLesson = false;
+          if (lessons && Array.isArray(lessons)) {
+            for (let k = 0; k < lessons.length; k++) {
+              let lesson = lessons[k];
+              if (!lesson.LessonName) {
+                errorNoti += "Tên bài giảng không được để trống!&nbsp;&nbsp;";
+                errorLesson = true;
+                valid = false;
+                break;
+              }
+            }
+            if (errorLesson) {
+              break;
+            }
+          }
+        }
+      }
+
+      if (course.Questions && Array.isArray(course.Questions)) {
+        for (let i = 0; i < course.Questions.length; i++) {
+          let question = course.Questions[i];
+          if (!question.QuestionStr) {
+            errorNoti += "Câu hỏi không được để trống!&nbsp;&nbsp;";
+            valid = false;
+            break;
+          }
+          if (!question.QuestionResult) {
+            errorNoti += "Chưa chọn đáp án cho câu hỏi!&nbsp;&nbsp;";
+            valid = false;
+            break;
+          }
+          for (let k = 0; k < question.Answers.length; k++) {
+            let answer = question.Answers[k];
+            if (!answer.Question) {
+              errorNoti += "Chưa nhập đầy đủ đáp án cho câu hỏi!&nbsp;&nbsp;";
+              valid = false;
+              break;
+            }
+          }
+        }
+      }
+
+      if (!valid) {
+        Vue.$toast.info(errorNoti);
+      }
+      return valid;
     },
 
     getPayloadSaveCourse() {

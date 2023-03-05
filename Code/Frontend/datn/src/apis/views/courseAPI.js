@@ -21,6 +21,10 @@ class CourseAPI extends BaseAPI {
   getListCourse(payload) {
     return this.postAxios(`${this.controller}/get-list-course`, payload);
   }
+
+  getDataStatistic() {
+    return this.postAxios(`${this.controller}/get-data-statistic`);
+  }
 }
 
 export default new CourseAPI();
