@@ -1,0 +1,29 @@
+
+Kịch bản demo:
+	Đăng ký: 
+	Đăng nhập:
+	Đăng xuất
+	
+	Các chức năng học viên:
+		Trang chủ:
+		Lọc: theo tên, theo danh mục
+		Xem tổng quan: hover
+		Xem đánh giá KH: xem nội dung, xem thời gian đánh giá
+		Học chi tiết khóa học: Học video, học file
+		Học xong: làm bài kiểm tra, đánh gái khóa học
+	Các chức năng giảng viên:
+		Xem đánh giá
+		Thêm
+		Sửa
+		Xóa
+	Chức năng admin: 
+		Thống kê
+	
+		
+	
+	
+
+
+	
+
+	

@@ -1,3 +1,0 @@
-
-- Chức năng admin
-- Đánh giá khóa học

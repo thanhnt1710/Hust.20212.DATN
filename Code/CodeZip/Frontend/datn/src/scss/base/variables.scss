@@ -1,0 +1,106 @@
+@import "@/assets/font-awesome/css/all.min.css";
+
+/* Biến màu */
+$white-color: #ffffff;
+$black-color: #000;
+$border-color: #e8e8e8;
+$focus-color: #0997eb;
+$main-color: #03ae66;
+$active-navbar-color: #0dd469;
+$focus-line-color: #cce8ff;
+$hover-line-color: #e5f3ff;
+$link-color: #0997eb;
+$background-color: #eaecef;
+$background-sidebar-color: #24344b;
+
+/* Chiều cao, khoảng cách */
+$header-height: 66px;
+$width-navbar-left: 200px;
+
+/* Phông chữ */
+@font-face {
+  font-family: "OpenSans-Bold";
+  src: url("@/assets/fonts/Open_Sans/OpenSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: "OpenSans-Italic";
+  src: url("@/assets/fonts/Open_Sans/OpenSans-Italic.ttf");
+}
+
+@font-face {
+  font-family: "OpenSans-Light";
+  src: url("@/assets/fonts/Open_Sans/OpenSans-Light.ttf");
+}
+
+@font-face {
+  font-family: "OpenSans-Medium";
+  src: url("@/assets/fonts/Open_Sans/OpenSans-Medium.ttf");
+}
+
+@font-face {
+  font-family: "OpenSans-Regular";
+  src: url("@/assets/fonts/Open_Sans/OpenSans-Regular.ttf");
+}
+
+// Roboto ----------------------------------------------------------------
+@font-face {
+  font-family: "Roboto-Black";
+  src: url("@/assets/fonts/Roboto/Roboto-Black.ttf");
+}
+
+@font-face {
+  font-family: "Roboto-Bold";
+  src: url("@/assets/fonts/Roboto/Roboto-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Roboto-Italic";
+  src: url("@/assets/fonts/Roboto/Roboto-Italic.ttf");
+}
+
+@font-face {
+  font-family: "Roboto-Light";
+  src: url("@/assets/fonts/Roboto/Roboto-Light.ttf");
+}
+
+@font-face {
+  font-family: "Roboto-Medium";
+  src: url("@/assets/fonts/Roboto/Roboto-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url("@/assets/fonts/Roboto/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Roboto-Thin";
+  src: url("@/assets/fonts/Roboto/Roboto-Thin.ttf");
+}
+
+// Montserrat ----------------------------------------------------------------
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url("@/assets/fonts/Montserrat/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Montserrat-Bold";
+
+  src: url("@/assets/fonts/Montserrat/Montserrat-Bold.ttf");
+}
+@font-face {
+  font-family: "Montserrat-Italic";
+  src: url("@/assets/fonts/Montserrat/Montserrat-Italic.ttf");
+}
+
+@font-face {
+  font-family: "Montserrat-Light";
+  src: url("@/assets/fonts/Montserrat/Montserrat-Light.ttf");
+}
+
+@font-face {
+  font-family: "Montserrat-Medium";
+  src: url("@/assets/fonts/Montserrat/Montserrat-Medium.ttf");
+}

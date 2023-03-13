@@ -9,7 +9,8 @@ export default class BaseAPI {
       baseURL: APIConfig,
       headers: {
         "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "origin",
+        // "Access-Control-Allow-Origin": "origin",
+        "Access-Control-Allow-Origin": "*",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });

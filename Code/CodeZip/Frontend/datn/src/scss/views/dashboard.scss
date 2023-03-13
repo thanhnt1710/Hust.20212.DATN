@@ -1,0 +1,20 @@
+.dashboard-data {
+  background-color: #fafafa;
+  margin: 0 64px;
+  .data-common {
+  }
+  .data-filter {
+    .filter-title {
+      font-family: "Montserrat-Bold";
+      font-size: 24px;
+      margin: 20px 0 14px 14px;
+    }
+    .filter-result {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      .filter-item {
+        margin: 0 12px;
+      }
+    }
+  }
+}

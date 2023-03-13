@@ -1,0 +1,38 @@
+@import "@/scss/base/variables.scss";
+
+.base-button {
+  button {
+    cursor: pointer;
+    border: 1px solid #a9adb1;
+    border-radius: 4px;
+    height: 32px;
+    font-size: 14px;
+    font-family: "Montserrat-Regular";
+    padding: 0 18px;
+    background-color: #f5f5f5;
+    outline: none;
+    &:hover {
+      background-color: $white-color;
+    }
+  }
+}
+
+.btn-primary {
+  button {
+    color: $white-color;
+    background-color: #0066ff;
+    &:hover {
+      background-color: #0033FF;
+    }
+  }
+}
+
+.btn-primary-outline {
+  button {
+    color: #0000FF;
+    background-color: $white-color;
+    &:hover {
+      background-color: #87cefa;
+    }
+  }
+}

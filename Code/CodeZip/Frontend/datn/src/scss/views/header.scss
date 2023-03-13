@@ -1,0 +1,83 @@
+@import "@/scss/base/variables.scss";
+
+.header {
+  height: $header-height;
+  border-bottom: 1px solid #e8ebed;
+  padding: 0 26px;
+  .header-left {
+    .logo {
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+    }
+    .app-name {
+      font-family: "Montserrat-Italic";
+      margin-left: 14px;
+      font-weight: bold;
+      font-size: 24px;
+      cursor: default;
+    }
+  }
+  .header-mid {
+    .search-header {
+      border-radius: 20px;
+      width: 300px;
+      .input {
+        margin-right: 50px;
+      }
+    }
+  }
+  .header-right {
+    .btn-fn {
+      font-family: "Montserrat-Regular";
+      font-size: 14px;
+      font-weight: bold;
+      color: #0dd469;
+      border: 1px solid #0dd469;
+      padding: 6px 14px;
+      border-radius: 18px;
+      cursor: pointer;
+      &:hover {
+        background-color: #f4f5f8;
+      }
+    }
+    .statistic {
+      margin-right: 10px;
+    }
+    .dashboard {
+      margin-right: 10px;
+    }
+    .my-course {
+
+    }
+    .avatar {
+      position: relative;
+      &:hover .logout {
+        display: block;
+      }
+      img {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        margin-left: 20px;
+        cursor: pointer;
+      }
+      .logout {
+        display: none;
+        z-index: 5;
+        position: absolute;
+        right: -24px;
+        background-color: white;
+        width: 96px;
+        border: 1px solid #bbb;
+        border-radius: 4px;
+        padding: 8px 10px;
+        cursor: pointer;
+        justify-content: center;
+        &:hover {
+          background-color: #eee;
+        }
+      }
+    }
+  }
+}

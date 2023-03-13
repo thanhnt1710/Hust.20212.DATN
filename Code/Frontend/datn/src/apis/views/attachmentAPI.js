@@ -11,7 +11,7 @@ class AttachmentAPI extends BaseAPI {
     return axios.post(`${this.baseURL}${this.controller}/upload`, attachment, {
       headers: {
         "Authorization": `Bearer ${localStorage.getItem("token")}`,
-        "Access-Control-Allow-Origin": "origin",
+        "Access-Control-Allow-Origin": "*",
         "content-type": "multipart/form-data",
         "Content-Type": "multipart/form-data",
       },

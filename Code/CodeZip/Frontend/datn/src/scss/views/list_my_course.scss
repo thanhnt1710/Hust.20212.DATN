@@ -1,0 +1,22 @@
+.list-my-course {
+  .lmc-data {
+    background-color: #fafafa;
+    margin: 0 64px;
+    .lmc-header {
+      margin: 10px 20px;
+      .lmc-title {
+        font-family: "Montserrat-Bold";
+        font-size: 24px;
+      }
+      .lmc-add-btn {
+      }
+    }
+    .lmc-result {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      .lmc-item {
+        margin: 0 12px;
+      }
+    }
+  }
+}
